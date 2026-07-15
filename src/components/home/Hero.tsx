@@ -39,14 +39,19 @@ export function Hero() {
         </video>
       </Parallax>
 
-      {/* Legibility scrims + brand mesh — vertical vignette for centered copy */}
-      <div className="absolute inset-0 bg-base/55" />
-      <div className="absolute inset-0 bg-gradient-to-b from-base via-base/50 to-base" />
-      <div className="absolute inset-0 bg-violet-mesh" />
+      {/* ── Legibility scrims ─────────────────────────────────────────────
+          Kept deliberately light so the footage actually reads. Instead of a
+          heavy full-frame wash, a soft radial pool sits behind the copy and
+          does the contrast work only where type lands; the top/bottom edges
+          stay anchored for the fixed header and the stat rail + marquee. */}
+      <div className="absolute inset-0 bg-base/25" />
+      <div className="absolute inset-0 bg-gradient-to-b from-base via-base/10 to-base" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_72%_56%_at_50%_46%,rgba(10,11,13,0.62)_0%,rgba(10,11,13,0.28)_48%,rgba(10,11,13,0)_74%)]" />
+      <div className="absolute inset-0 bg-violet-mesh opacity-60" />
 
       {/* Ambient glow orbs */}
-      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[52vh] w-[52vh] -translate-x-1/2 rounded-full bg-accent/12 blur-[150px] animate-float" />
-      <div className="pointer-events-none absolute bottom-10 right-1/4 h-[26vh] w-[26vh] rounded-full bg-accent-signal/10 blur-[110px] animate-float [animation-delay:-4s]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[52vh] w-[52vh] -translate-x-1/2 rounded-full bg-accent/10 blur-[150px] animate-float" />
+      <div className="pointer-events-none absolute bottom-10 right-1/4 h-[26vh] w-[26vh] rounded-full bg-accent-signal/[0.08] blur-[110px] animate-float [animation-delay:-4s]" />
 
       {/* ── Centered spotlight content ─────────────────────────────────── */}
       <div className="relative z-10 mx-auto max-w-4xl px-4 pt-16 text-center sm:px-6">
@@ -55,13 +60,13 @@ export function Hero() {
           Industrial 3D Printers · United States
         </p>
 
-        <h1 className="animate-fade-up font-heading text-[clamp(3.2rem,10vw,8rem)] font-bold uppercase leading-[0.9] tracking-[-0.01em] text-white text-balance [animation-delay:60ms]">
+        <h1 className="animate-fade-up font-heading text-[clamp(3.2rem,10vw,8rem)] font-bold uppercase leading-[0.9] tracking-[-0.01em] text-white text-balance [text-shadow:0_2px_40px_rgba(10,11,13,0.85)] [animation-delay:60ms]">
           Print the
           <br />
           <span className="text-spark">future.</span>
         </h1>
 
-        <p className="mx-auto mt-8 max-w-2xl animate-fade-up text-lg leading-relaxed text-steel text-pretty [animation-delay:140ms] sm:text-xl">
+        <p className="mx-auto mt-8 max-w-2xl animate-fade-up text-lg leading-relaxed text-titanium/90 text-pretty [text-shadow:0_1px_16px_rgba(10,11,13,0.95)] [animation-delay:140ms] sm:text-xl">
           Industrial 3D printing, within reach. Envishon sources the SLM, SLS,
           and large-format FDM machines most businesses can&apos;t get locally —
           and delivers them across the United States. Built layer by layer, just
