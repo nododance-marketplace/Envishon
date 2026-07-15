@@ -20,16 +20,22 @@ export default function ShopPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      {/* Header banner — a still frame of the real example footage. The source
-          frame carries a legacy watermark along the very bottom edge, so the
-          image is scaled from the top and the strip is clipped + scrimmed. */}
+      {/* Header banner — the real SLM line running: factory floor, laser melt,
+          finished parts. Muted + looped so it plays inline everywhere; the
+          poster covers first paint and autoplay-blocked browsers. */}
       <section className="relative aspect-[16/7] overflow-hidden rounded-3xl border border-white/[0.08] bg-base-900">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/shop-still-frame.png"
-          alt="Envishon SLM metal printer control panel mid-build"
-          className="absolute inset-0 h-[118%] w-full origin-top object-cover"
-        />
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/video/shop-slm-poster.jpg"
+          aria-label="Envishon SLM metal printers running on the factory floor"
+        >
+          <source src="/video/shop-slm.mp4" type="video/mp4" />
+        </video>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-base via-base/10 to-base/20" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-base to-transparent" />
         <span className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-base/50 px-3 py-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-titanium backdrop-blur">
@@ -38,7 +44,7 @@ export default function ShopPage() {
         </span>
         <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
           <p className="max-w-xs font-heading text-lg leading-tight text-white sm:text-2xl">
-            Live SLM build telemetry — layer by layer.
+            The SLM line, running.
           </p>
           <span className="hidden font-mono text-[11px] uppercase tracking-[0.2em] text-steel sm:block">
             CoCr · 200 W · 0.030 mm

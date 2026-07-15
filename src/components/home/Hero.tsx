@@ -20,20 +20,23 @@ const MARQUEE = [
 export function Hero() {
   return (
     <section className="relative -mt-16 flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden">
-      {/* ── Cinematic background — a clean still of the SLM powder bed,
-          drifting on a gentle parallax. NOTE: the old header.mp4 footage
-          contains legacy StrataLabs branding mid-clip, so we hold this
-          branding-free frame instead. Drop a new branded loop at
-          /public/video/header.mp4 and swap this <img> for a <video> to bring
-          motion back. ──────────────────────────────────────────────────── */}
+      {/* ── Cinematic background — the Envishon header loop, drifting on a
+          gentle parallax so the hero feels three-dimensional. Muted + looped
+          so it plays inline everywhere; the poster covers the first paint and
+          any browser that blocks autoplay. ─────────────────────────────── */}
       <Parallax speed={-0.1} className="absolute inset-0">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/video/header-first-frame.jpg"
-          alt=""
-          aria-hidden="true"
+        <video
           className="h-[115%] w-full object-cover"
-        />
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/video/header-poster.jpg"
+          aria-hidden="true"
+        >
+          <source src="/video/header.mp4" type="video/mp4" />
+        </video>
       </Parallax>
 
       {/* Legibility scrims + brand mesh — vertical vignette for centered copy */}
