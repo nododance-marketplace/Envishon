@@ -11,7 +11,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 export const metadata: Metadata = {
   title: "Shop Printers",
   description:
-    "Browse Envishon' catalog of industrial SLM metal 3D printers — buy online or request a quote. SLS, resin, and large-format FDM coming soon.",
+    "Browse Envishon's catalog of industrial SLM metal 3D printers and the EN-Atomizer powder system — request a quote with US-based support. SLS, resin, and large-format FDM coming soon.",
 };
 
 export default function ShopPage() {
@@ -55,9 +55,9 @@ export default function ShopPage() {
           Industrial 3D printers
         </h1>
         <p className="mt-5 text-base leading-relaxed text-steel text-pretty">
-          Production-grade SLM metal systems — the hard-to-source machines that
-          open new doors. Buy online or request a quote, with US-based support
-          from inquiry to install.
+          Production-grade SLM metal systems — plus the atomizer that makes the
+          powder they run on. The hard-to-source machines that open new doors,
+          with US-based support from inquiry to install.
         </p>
       </header>
 

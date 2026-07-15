@@ -22,6 +22,7 @@ export const CATEGORIES: Category[] = [
   "Desktop",
   "Dental",
   "Industrial",
+  "Powder Production",
 ];
 
 /** Human-readable copy for each category badge / filter. */
@@ -43,6 +44,11 @@ export const CATEGORY_META: Record<
     label: "Industrial",
     blurb:
       "Large- and super-large-format SLM for molds, tooling, and serious mass production.",
+  },
+  "Powder Production": {
+    label: "Powder Production",
+    blurb:
+      "Atomizers that turn precious metal into your own print-ready powder — close the loop on feedstock.",
   },
   Design: {
     label: "Design",
@@ -345,6 +351,77 @@ export const products: Product[] = [
     ],
     images: ["/products/en-m800.png"],
     quotePdf: "/quotes/en-m800-quote.pdf",
+  },
+
+  // ─── POWDER PRODUCTION ───────────────────────────────────────────────────
+  // Sits alongside the SLM printers: the atomizer makes the powder those
+  // machines print. NOTE: dimensions, weight and per-model power draw are
+  // NOT published here — the supplier's two spec tables contradict each other
+  // (see Products/Atomizer/SOURCE.md). Add them once confirmed.
+  {
+    slug: "en-atomizer",
+    name: "EN-Atomizer",
+    category: "Powder Production",
+    specLine:
+      "4–100 kg gold capacity · 1600–2200 °C · 80#–400# adjustable grit · vacuum atomization",
+    priceCents: null,
+    description:
+      "Most metal printing operations are held hostage by their powder supply — you run the alloys someone else decided to stock, at the price they set, on their lead time. The EN-Atomizer removes that constraint. It melts precious metal and atomizes it into fine, spherical powder in a single one-key cycle, so you produce exactly the alloy you need, in the batch size you actually use. Gold, K-gold, silver, copper and custom alloys all run on the same machine, with particle size adjustable from 80# down to 400#. Small batches are the entire point: large plants can't economically turn out 4 kg of a one-off alloy, and every alloy change on shared equipment risks cross-contamination. That makes it a natural fit for SLM and MIM work — and for anyone who'd rather reclaim and re-atomize their own precious metal than sell it back at a loss. Available from a 4 kg benchtop vacuum unit up to a 100 kg floor-standing production system, installed and supported by our US-based team.",
+    highlights: [
+      "Own your feedstock — produce the exact alloy you need instead of buying what's in stock",
+      "Built for small batches — economical down to 4 kg runs that large plants can't justify",
+      "High purity, frequent alloy changes — vacuum + inert gas blanketing keeps cross-contamination out",
+      "Adjustable particle size — 80#–200# and 300#–400# grit ranges from one machine",
+      "One-key operation — full cycle start to finish, with a POKA-YOKE foolproof system",
+      "±1 °C temperature accuracy at up to 1600–2200 °C",
+      "Scales with you — 4, 8, 30, 50 and 100 kg gold capacities",
+      "Runs precious metals — gold, K-gold, silver, copper and custom alloys",
+      "Needs 380 V three-phase power; water chiller is sold separately",
+    ],
+    specs: [
+      { label: "Process", value: "Vacuum gas / water atomization" },
+      { label: "Product Model", value: "EN-Atomizer (EN-A4 → EN-A100)" },
+      { label: "Gold Capacity", value: "4 / 8 / 30 / 50 / 100 kg" },
+      { label: "Max Temperature", value: "1600 °C / 2200 °C" },
+      { label: "Temperature Accuracy", value: "±1 °C" },
+      { label: "Melting Time", value: "3–30 min (by model)" },
+      { label: "Particle Grit", value: "80#–200# / 300#–400# (adjustable)" },
+      {
+        label: "Atomizes",
+        value: "Gold, K-gold, Silver, Copper, Custom alloys",
+      },
+      {
+        label: "Operation",
+        value: "One-key full cycle · POKA-YOKE foolproof system",
+      },
+      {
+        label: "Control System",
+        value: "Siemens PLC + Weinview touch-screen",
+      },
+      { label: "Inert Gas", value: "Nitrogen / Argon" },
+      { label: "Vacuum Pump", value: "High-vacuum pump, −100 kPa" },
+      {
+        label: "Water Pump",
+        value: "High-pressure pump, touch-panel controlled",
+      },
+      { label: "Cooling", value: "Water chiller (sold separately)" },
+      { label: "Power Supply", value: "380 V, 50/60 Hz, three phase" },
+      { label: "Dimensions & Weight", value: "Confirmed per model on quote" },
+      // ── Model lineup ──
+      { label: "EN-A4 · 4 kg Au", value: "3–5 min melt · vacuum benchtop" },
+      { label: "EN-A8 · 8 kg Au", value: "5–8 min melt · vacuum benchtop" },
+      { label: "EN-A30 · 30 kg Au", value: "5–8 min melt · floor-standing" },
+      { label: "EN-A50 · 50 kg Au", value: "8–15 min melt · floor-standing" },
+      {
+        label: "EN-A100 · 100 kg Au",
+        value: "20–30 min melt · floor-standing",
+      },
+    ],
+    images: [
+      "/products/en-atomizer.jpg",
+      "/products/en-atomizer-powder.jpg",
+      "/products/en-atomizer-moist-powder.jpg",
+    ],
   },
 
   // ─── COMING SOON ─────────────────────────────────────────────────────────

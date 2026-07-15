@@ -1,11 +1,13 @@
 // Shared domain types for the Envishon storefront.
 
-// Buyable machines (all SLM metal) are filtered by use-case segment. The
-// process types below are reserved for upcoming "coming soon" inventory.
+// Buyable machines are filtered by use-case segment (the SLM printers) plus
+// "Powder Production" for the atomizer that feeds them. The process types at
+// the bottom are reserved for upcoming "coming soon" inventory.
 export type Category =
   | "Desktop"
   | "Dental"
   | "Industrial"
+  | "Powder Production"
   | "Design"
   | "AI"
   | "SLS"

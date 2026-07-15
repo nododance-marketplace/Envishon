@@ -52,20 +52,20 @@ export function ShopGrid({ products }: { products: Product[] }) {
           );
         })}
         <span className="ml-auto text-sm text-steel">
-          {filtered.length} {filtered.length === 1 ? "printer" : "printers"}
+          {filtered.length} {filtered.length === 1 ? "machine" : "machines"}
         </span>
       </div>
 
       {/* Grid */}
       {filtered.length === 0 ? (
         <div className="mt-16 rounded-2xl border border-dashed border-white/10 px-8 py-20 text-center">
-          <p className="text-titanium">No printers in this category yet.</p>
+          <p className="text-titanium">Nothing in this category yet.</p>
           <button
             type="button"
             onClick={() => setActive("All")}
             className="mt-3 text-sm text-steel underline-offset-4 hover:text-white hover:underline"
           >
-            Show all printers
+            Show all machines
           </button>
         </div>
       ) : (
