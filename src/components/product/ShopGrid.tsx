@@ -1,6 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useSearchParams } from "next/navigation";
 import type { Category, Product } from "@/lib/types";
 import { CATEGORIES } from "@/data/products";
@@ -21,6 +27,29 @@ export function ShopGrid({ products }: { products: Product[] }) {
 
   const [active, setActive] = useState<Filter>(initialFilter);
 
+  // ── Sliding indicator ────────────────────────────────────────────────
+  // One violet pill glides beneath the active chip instead of each button
+  // repainting. Measured from the real DOM so it survives wrapping/resize.
+  const barRef = useRef<HTMLDivElement>(null);
+  const btnRefs = useRef<Map<Filter, HTMLButtonElement>>(new Map());
+  const [pill, setPill] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
+
+  const measure = () => {
+    const bar = barRef.current;
+    const btn = btnRefs.current.get(active);
+    if (!bar || !btn) return;
+    const b = bar.getBoundingClientRect();
+    const r = btn.getBoundingClientRect();
+    setPill({ x: r.left - b.left, y: r.top - b.top, w: r.width, h: r.height });
+  };
+
+  useLayoutEffect(measure, [active]);
+  useEffect(() => {
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active]);
+
   const filtered = useMemo(
     () =>
       active === "All"
@@ -32,29 +61,50 @@ export function ShopGrid({ products }: { products: Product[] }) {
   return (
     <div>
       {/* Filter bar */}
-      <div className="flex flex-wrap items-center gap-2.5">
-        {FILTERS.map((filter) => {
-          const isActive = filter === active;
-          return (
-            <button
-              key={filter}
-              type="button"
-              onClick={() => setActive(filter)}
-              aria-pressed={isActive}
-              className={`rounded-full border px-5 py-2 text-sm transition-all duration-300 active:scale-[0.97] ${
-                isActive
-                  ? "border-accent bg-accent text-base"
-                  : "border-white/12 text-steel hover:border-accent/40 hover:text-accent-ember"
-              }`}
-            >
-              {filter}
-            </button>
-          );
-        })}
-        <span className="ml-auto text-sm text-steel">
-          {filtered.length} {filtered.length === 1 ? "machine" : "machines"}
+      <div className="flex flex-wrap items-center gap-y-3">
+        <div ref={barRef} className="relative flex flex-wrap gap-2.5">
+          {/* the glide pill */}
+          {pill && (
+            <span
+              aria-hidden="true"
+              className="absolute left-0 top-0 rounded-full bg-accent shadow-accent transition-[transform,width,height] duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none"
+              style={{
+                transform: `translate3d(${pill.x}px, ${pill.y}px, 0)`,
+                width: pill.w,
+                height: pill.h,
+              }}
+            />
+          )}
+          {FILTERS.map((filter) => {
+            const isActive = filter === active;
+            return (
+              <button
+                key={filter}
+                ref={(node) => {
+                  if (node) btnRefs.current.set(filter, node);
+                  else btnRefs.current.delete(filter);
+                }}
+                type="button"
+                onClick={() => setActive(filter)}
+                aria-pressed={isActive}
+                className={`relative z-10 rounded-full border px-5 py-2 text-sm transition-colors duration-300 active:scale-[0.97] ${
+                  isActive
+                    ? "border-transparent text-base"
+                    : "border-white/10 text-steel hover:border-accent/40 hover:text-accent-ember"
+                }`}
+              >
+                {filter}
+              </button>
+            );
+          })}
+        </div>
+        <span className="ml-auto pl-4 font-mono text-xs uppercase tracking-[0.16em] text-steel">
+          {String(filtered.length).padStart(2, "0")}{" "}
+          {filtered.length === 1 ? "machine" : "machines"}
         </span>
       </div>
+
+      <div className="rule-ticks mt-6" aria-hidden="true" />
 
       {/* Grid */}
       {filtered.length === 0 ? (

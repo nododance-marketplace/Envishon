@@ -179,6 +179,40 @@
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 font-medium text-titanium transition-all duration-300 hover:border-accent/50 hover:bg-white/[0.03] hover:text-white active:scale-[0.98];
   }
+
+  /* ── HUD instrumentation ─────────────────────────────────────────────
+     Small, dim, mono. The page should feel like it has instrumentation —
+     never like it's shouting. Graphite/steel only; violet stays reserved. */
+
+  /* Hairline rule with tick marks, like a machined scale. */
+  .rule-ticks {
+    height: 5px;
+    background-image:
+      linear-gradient(rgba(197, 200, 204, 0.14), rgba(197, 200, 204, 0.14)),
+      repeating-linear-gradient(
+        90deg,
+        rgba(197, 200, 204, 0.22) 0 1px,
+        transparent 1px 24px
+      );
+    background-size:
+      100% 1px,
+      100% 5px;
+    background-position: bottom, bottom;
+    background-repeat: no-repeat, repeat-x;
+  }
+
+  /* Bracketed spec chip: [ SLM · 500W · 20–120µm ] */
+  .hud-chip {
+    @apply inline-flex items-center gap-1.5 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.14em] text-graphite;
+  }
+  .hud-chip::before {
+    content: "[";
+    @apply text-steel/50;
+  }
+  .hud-chip::after {
+    content: "]";
+    @apply text-steel/50;
+  }
 }
 
 @layer utilities {

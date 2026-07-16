@@ -12,6 +12,7 @@ import {
   CheckIcon,
   DownloadIcon,
   FileTextIcon,
+  ShieldIcon,
 } from "@/components/ui/icons";
 
 interface PageProps {
@@ -60,20 +61,39 @@ export default function ProductDetailPage({ params }: PageProps) {
       </nav>
 
       <div className="mt-8 grid gap-12 lg:grid-cols-2 lg:gap-16">
-        {/* Gallery */}
-        <ProductGallery
-          images={product.images}
-          name={product.name}
-          category={product.category}
-        />
+        {/* Gallery — pins on desktop so the machine stays in view while the
+            long technical readout scrolls beside it. */}
+        <div className="lg:sticky lg:top-24 lg:self-start">
+          <ProductGallery
+            images={product.images}
+            name={product.name}
+            category={product.category}
+          />
+          {/* HUD footer under the imagery — quiet instrumentation */}
+          <div className="mt-4 hidden items-center justify-between lg:flex">
+            <span className="hud-chip">
+              {product.category} · {product.slug.toUpperCase()}
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-graphite">
+              ENVISHON // US
+            </span>
+          </div>
+        </div>
 
         {/* Details */}
         <div>
-          <CategoryBadge category={product.category} />
+          <div className="flex items-center justify-between gap-3">
+            <CategoryBadge category={product.category} />
+            <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-graphite">
+              P/N {product.slug.toUpperCase()}
+            </span>
+          </div>
           <h1 className="mt-4 font-heading text-4xl font-medium tracking-tight text-white sm:text-5xl">
             {product.name}
           </h1>
-          <p className="mt-3 text-sm text-steel">{product.specLine}</p>
+          <p className="mt-3 font-mono text-xs tracking-[0.02em] text-steel sm:text-sm">
+            {product.specLine}
+          </p>
 
           <p className="mt-6 max-w-prose text-base leading-relaxed text-steel">
             {product.description}
@@ -202,34 +222,65 @@ export default function ProductDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Spec table — technical readout */}
+          {/* Spec table — technical readout: indexed rows, machined rules,
+              aligned mono columns. Reads like the machine's own datasheet. */}
           <div className="mt-12">
-            <div className="flex items-center justify-between">
+            <div className="flex items-baseline justify-between">
               <h2 className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent-ember">
-                Specifications
+                Technical Parameters
               </h2>
-              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-steel/60">
-                {product.specs.length} fields
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-graphite">
+                {String(product.specs.length).padStart(2, "0")} fields ·{" "}
+                {product.name}
               </span>
             </div>
-            <dl className="mt-5 divide-y divide-white/[0.07] border-y border-white/[0.07]">
-              {product.specs.map((spec) => (
+            <div className="rule-ticks mt-3" aria-hidden="true" />
+            <dl className="divide-y divide-white/[0.06]">
+              {product.specs.map((spec, i) => (
                 <div
                   key={spec.label}
-                  className="grid grid-cols-2 gap-4 py-3.5 text-sm transition-colors hover:bg-white/[0.015]"
+                  className="grid grid-cols-[2.25rem_1fr_1.4fr] items-baseline gap-3 py-3 text-sm transition-colors hover:bg-white/[0.015]"
                 >
+                  <span
+                    className="font-mono text-[10px] tabular-nums text-graphite"
+                    aria-hidden="true"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   <dt className="font-mono text-[12px] uppercase tracking-[0.06em] text-steel">
                     {spec.label}
                   </dt>
-                  <dd className="text-right font-mono tabular-nums text-titanium">
+                  <dd className="text-right font-mono text-[13px] tabular-nums text-titanium">
                     {spec.value}
                   </dd>
                 </div>
               ))}
             </dl>
+            <div className="rule-ticks rotate-180" aria-hidden="true" />
           </div>
 
-          <div className="mt-8 rounded-2xl border border-white/[0.07] bg-base-900/60 p-5 text-sm text-steel">
+          {/* Manufacturer compliance — attributed to the factory, never
+              restated as Envishon's own. Text only: the official CE / FDA /
+              ISO marks are deliberately not used (the FDA logo may not be
+              displayed by private companies). See products.ts. */}
+          {product.compliance && (
+            <div className="mt-8 rounded-2xl border border-white/[0.07] bg-base-900/60 p-5">
+              <div className="flex items-center gap-2">
+                <ShieldIcon className="h-4 w-4 shrink-0 text-accent-ember" />
+                <h2 className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent-ember">
+                  Compliance
+                </h2>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-steel">
+                {product.compliance}
+              </p>
+              <p className="mt-2 text-xs leading-relaxed text-steel/60">
+                Certifications are held by the manufacturer.
+              </p>
+            </div>
+          )}
+
+          <div className="mt-6 rounded-2xl border border-white/[0.07] bg-base-900/60 p-5 text-sm text-steel">
             {CATEGORY_META[product.category].blurb}
           </div>
         </div>

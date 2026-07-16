@@ -31,13 +31,24 @@ export function ProductCard({ product }: { product: Product }) {
       </Link>
 
       <div className="relative z-[2] flex flex-1 flex-col gap-3 p-6">
-        <CategoryBadge category={product.category} />
+        {/* Equipment-plate header: badge + part number over a machined rule */}
+        <div>
+          <div className="flex items-center justify-between gap-2">
+            <CategoryBadge category={product.category} />
+            <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-graphite">
+              P/N {product.slug.toUpperCase()}
+            </span>
+          </div>
+          <div className="rule-ticks mt-3" aria-hidden="true" />
+        </div>
 
         <h3 className="font-heading text-xl tracking-tight text-white">
           {product.name}
         </h3>
 
-        <p className="text-sm leading-relaxed text-steel">{product.specLine}</p>
+        <p className="font-mono text-xs leading-relaxed tracking-[0.02em] text-steel">
+          {product.specLine}
+        </p>
 
         <div className="mt-auto flex items-center justify-between pt-4">
           {product.priceCents != null ? (

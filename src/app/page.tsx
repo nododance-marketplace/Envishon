@@ -4,16 +4,38 @@ import { WhySection } from "@/components/home/WhySection";
 import { SegmentBand } from "@/components/home/SegmentBand";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { CtaBand } from "@/components/home/CtaBand";
+import { ProgressRail } from "@/components/ui/ProgressRail";
+
+// Section index for the sticky rail — ids live on the wrappers below.
+const RAIL = [
+  { id: "overview", label: "Overview" },
+  { id: "why", label: "Why Envishon" },
+  { id: "segments", label: "Segments" },
+  { id: "machines", label: "Machines" },
+  { id: "contact-cta", label: "Contact" },
+];
 
 export default function HomePage() {
   return (
     <>
-      <Hero />
-      <TelemetryStrip />
-      <WhySection />
-      <SegmentBand />
-      <FeaturedProducts />
-      <CtaBand />
+      <ProgressRail sections={RAIL} />
+
+      <div id="overview">
+        <Hero />
+        <TelemetryStrip />
+      </div>
+      <div id="why">
+        <WhySection />
+      </div>
+      <div id="segments">
+        <SegmentBand />
+      </div>
+      <div id="machines">
+        <FeaturedProducts />
+      </div>
+      <div id="contact-cta" className="pb-8 pt-6 sm:pb-16 sm:pt-10">
+        <CtaBand />
+      </div>
     </>
   );
 }

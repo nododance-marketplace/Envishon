@@ -2,20 +2,14 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { Parallax } from "@/components/ui/Parallax";
 import { Counter } from "@/components/ui/Counter";
+import { Magnetic } from "@/components/ui/Magnetic";
+import { getAvailableProducts } from "@/data/products";
 
-// Rolling process/material tags for the base marquee.
-const MARQUEE = [
-  "SLM",
-  "Selective Laser Melting",
-  "CoCr",
-  "Titanium Alloy",
-  "Pure Titanium",
-  "Dental",
-  "Large-format FDM",
-  "SLS",
-  "US-based support",
-  "Layer by layer",
-];
+// Live machine readouts for the base ticker — real model codes and spec
+// lines straight from the catalog, never invented copy.
+const READOUT = getAvailableProducts().map(
+  (p) => `${p.name} :: ${p.specLine}`,
+);
 
 export function Hero() {
   return (
@@ -49,6 +43,14 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_72%_56%_at_50%_46%,rgba(10,11,13,0.62)_0%,rgba(10,11,13,0.28)_48%,rgba(10,11,13,0)_74%)]" />
       <div className="absolute inset-0 bg-violet-mesh opacity-60" />
 
+      {/* Faint engineering grid, drifting a few px against the scroll */}
+      <Parallax speed={0.05} className="pointer-events-none absolute inset-0">
+        <div className="tech-grid h-full w-full opacity-70" />
+      </Parallax>
+
+      {/* One restrained scanline sweep — slow, dim, machined */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-accent/[0.06] to-transparent animate-[scanline_12s_cubic-bezier(0.4,0,0.2,1)_infinite] motion-reduce:hidden" />
+
       {/* Ambient glow orbs */}
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-[52vh] w-[52vh] -translate-x-1/2 rounded-full bg-accent/10 blur-[150px] animate-float" />
       <div className="pointer-events-none absolute bottom-10 right-1/4 h-[26vh] w-[26vh] rounded-full bg-accent-signal/[0.08] blur-[110px] animate-float [animation-delay:-4s]" />
@@ -74,10 +76,12 @@ export function Hero() {
         </p>
 
         <div className="mt-11 flex animate-fade-up flex-wrap items-center justify-center gap-4 [animation-delay:220ms]">
-          <Link href="/shop" className="btn-spark group px-8 py-4 text-sm">
-            Shop Printers
-            <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+          <Magnetic>
+            <Link href="/shop" className="btn-spark group px-8 py-4 text-sm">
+              Shop Printers
+              <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Magnetic>
           <Link href="/contact" className="btn-ghost px-8 py-4 text-sm">
             Talk to Sales
           </Link>
@@ -113,16 +117,17 @@ export function Hero() {
         </dl>
       </div>
 
-      {/* Base marquee — process + material vocabulary, always drifting */}
+      {/* Base ticker — live machine readouts from the actual catalog,
+          drifting slowly along the bottom edge like an instrument strip. */}
       <div className="absolute inset-x-0 bottom-0 overflow-hidden border-t border-white/[0.06] bg-base/40 py-3 backdrop-blur-sm">
-        <div className="flex w-max animate-marquee gap-10 whitespace-nowrap">
-          {[...MARQUEE, ...MARQUEE].map((tag, i) => (
+        <div className="flex w-max animate-marquee gap-12 whitespace-nowrap motion-reduce:animate-none">
+          {[...READOUT, ...READOUT].map((line, i) => (
             <span
               key={i}
-              className="flex items-center gap-10 font-mono text-[11px] uppercase tracking-[0.24em] text-steel/70"
+              className="flex items-center gap-12 font-mono text-[10px] uppercase tracking-[0.18em] text-steel/70"
             >
-              {tag}
-              <span className="text-accent/50">/</span>
+              {line}
+              <span className="text-accent/40">▮</span>
             </span>
           ))}
         </div>

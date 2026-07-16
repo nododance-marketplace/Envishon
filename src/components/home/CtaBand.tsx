@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { Parallax } from "@/components/ui/Parallax";
+import { Magnetic } from "@/components/ui/Magnetic";
 import { ArrowRightIcon } from "@/components/ui/icons";
 
 /**
@@ -33,10 +34,12 @@ export function CtaBand() {
             day one.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link href="/contact" className="btn-spark group px-8 py-4 text-sm">
-              Talk to Sales
-              <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <Magnetic>
+              <Link href="/contact" className="btn-spark group px-8 py-4 text-sm">
+                Talk to Sales
+                <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Magnetic>
             <Link href="/shop" className="btn-ghost px-8 py-4 text-sm">
               Browse the catalog
             </Link>

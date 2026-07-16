@@ -18,7 +18,7 @@ export function TelemetryStrip() {
   return (
     <section className="relative -mt-px border-y border-white/[0.07] bg-base-900/60">
       {/* sweeping scanline */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-transparent via-accent/[0.07] to-transparent animate-[marquee_9s_linear_infinite]" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-transparent via-accent/[0.07] to-transparent animate-[marquee_9s_linear_infinite] motion-reduce:hidden" />
 
       <div className="relative mx-auto flex max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:gap-12 lg:px-8">
         <Reveal from="left" className="flex items-center gap-3 lg:w-52 lg:shrink-0">

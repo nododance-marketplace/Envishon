@@ -25,17 +25,22 @@ const PILLARS = [
 
 export function WhySection() {
   return (
-    <section className="relative overflow-hidden py-28 sm:py-32">
+    <section className="relative overflow-hidden py-32 sm:py-44">
       {/* Technical grid backdrop */}
       <div className="pointer-events-none absolute inset-0 tech-grid" />
       <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-[60vw] -translate-x-1/2 rounded-full bg-accent/[0.06] blur-[120px]" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <p className="kicker">
-            <span className="h-px w-8 bg-accent/60" />
-            Why Envishon
-          </p>
+          <div className="flex items-baseline justify-between gap-4">
+            <p className="kicker">
+              <span className="h-px w-8 bg-accent/60" />
+              Why Envishon
+            </p>
+            <span className="hud-chip hidden sm:inline-flex">
+              SEC 01 · SOURCING
+            </span>
+          </div>
           <h2 className="mt-5 max-w-2xl font-heading text-4xl font-medium tracking-tight text-white sm:text-5xl text-balance">
             The printers others can&apos;t get you.
           </h2>

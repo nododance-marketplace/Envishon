@@ -7,6 +7,7 @@ export type Category =
   | "Desktop"
   | "Dental"
   | "Industrial"
+  | "Thermal"
   | "Powder Production"
   | "Design"
   | "AI"
@@ -44,6 +45,15 @@ export interface Product {
   description: string;
   /** Bullet highlights shown on the product detail page (optional). */
   highlights?: string[];
+  /**
+   * Manufacturer compliance note shown on the product detail page.
+   * IMPORTANT: these are the *factory's* certifications, not Envishon's — the
+   * copy must stay attributed to the manufacturer. Never restate CE / FDA /
+   * ISO as Envishon's own, and never display the official marks (the FDA logo
+   * in particular may not be used by private companies). See
+   * Products/New Catalog/CHANGES-vs-current-site.md.
+   */
+  compliance?: string;
   /** Full spec table rows shown on the product detail page. */
   specs: SpecField[];
   /**

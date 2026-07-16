@@ -48,14 +48,17 @@ const SEGMENTS = [
 
 export function SegmentBand() {
   return (
-    <section className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    <section className="relative mx-auto max-w-7xl px-4 py-28 sm:px-6 sm:py-40 lg:px-8">
       <Reveal>
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div className="max-w-xl">
-            <p className="kicker">
-              <span className="h-px w-8 bg-accent/60" />
-              Built around your work
-            </p>
+            <div className="flex items-baseline gap-6">
+              <p className="kicker">
+                <span className="h-px w-8 bg-accent/60" />
+                Built around your work
+              </p>
+              <span className="hud-chip hidden sm:inline-flex">SEC 02</span>
+            </div>
             <h2 className="mt-5 font-heading text-4xl font-medium tracking-tight text-white sm:text-5xl text-balance">
               One process. Three floors.
             </h2>

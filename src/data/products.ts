@@ -22,8 +22,30 @@ export const CATEGORIES: Category[] = [
   "Desktop",
   "Dental",
   "Industrial",
+  "Thermal",
   "Powder Production",
 ];
+
+/**
+ * ─────────────────────────────────────────────────────────────────────────
+ *  MANUFACTURER COMPLIANCE — shared by the SLM printer line.
+ * ─────────────────────────────────────────────────────────────────────────
+ *  These are the FACTORY's certifications, not Envishon's, and the wording is
+ *  deliberately attributed that way. Do NOT reword this to imply Envishon
+ *  holds them, and do NOT add the CE / FDA / ISO marks as images — the FDA
+ *  logo may not be used by private companies at all.
+ *
+ *  Sourced from the FASTFORM 2026 catalog's own claim. Still to obtain from
+ *  the supplier before this can carry certificate numbers:
+ *    1. CE Declaration of Conformity (per model)
+ *    2. FDA accession number for the laser product report (21 CFR 1040.10)
+ *    3. ISO 9001 certificate — number, issuing body, expiry
+ *  Note: the accession number is also needed on FDA Form 2877 at import.
+ *  See Products/New Catalog/CHANGES-vs-current-site.md.
+ * ─────────────────────────────────────────────────────────────────────────
+ */
+export const PRINTER_COMPLIANCE =
+  "Manufactured in an ISO 9001-certified facility, CE marked, and built to the FDA laser-safety standard (21 CFR 1040.10). Compliance documentation is supplied with every install.";
 
 /** Human-readable copy for each category badge / filter. */
 export const CATEGORY_META: Record<
@@ -44,6 +66,11 @@ export const CATEGORY_META: Record<
     label: "Industrial",
     blurb:
       "Large- and super-large-format SLM for molds, tooling, and serious mass production.",
+  },
+  Thermal: {
+    label: "Thermal",
+    blurb:
+      "Green-laser copper printing — liquid cooling, cold plates, and heat exchangers you can't cast or machine.",
   },
   "Powder Production": {
     label: "Powder Production",
@@ -93,35 +120,42 @@ export const products: Product[] = [
       "Hassle-free install with 4-color coded, mistake-proof conduits",
       "Exclusive LFPT (Laser Follow Powder Technology) boosts efficiency ~20%",
     ],
+    compliance: PRINTER_COMPLIANCE,
     specs: [
       { label: "Process", value: "SLM (Selective Laser Melting)" },
       { label: "Printer Model", value: "EN-DESK" },
-      { label: "Dimensions", value: "615×655×850 mm (W×D×H)" },
+      { label: "Dimensions", value: "615 × 655 × 850 mm (L×W×H)" },
       { label: "Weight", value: "140 kg" },
-      { label: "Building Size", value: "Ø100×70 mm (baseplate included)" },
+      { label: "Building Size", value: "Ø100 × 70 mm" },
       { label: "Spot Size", value: "20–80 µm" },
       { label: "Laser Power", value: "Single laser, 300 W" },
       { label: "Laser Type", value: "CW Fiber Laser" },
+      { label: "Rated Power", value: "1 kW" },
       { label: "Min. Oxygen", value: "≤100 ppm" },
       { label: "Scan Speed", value: "0–7 m/s" },
-      { label: "Layer Thickness", value: "20–80 µm" },
+      { label: "Layer Thickness", value: "20–80 µm (adjustable)" },
+      { label: "Recoater Type", value: "Flexible soft blade" },
       {
-        label: "Recoating",
-        value: "Upper feeding & one-way recoating, flexible soft blade",
+        label: "Powder Feeding Type",
+        value: "Top powder feeding, one-way recoating",
       },
       { label: "Printing Accuracy", value: "±0.05 mm (L≤100 mm)" },
       { label: "Powder Capacity", value: "1.5 L" },
       { label: "Power Failure", value: "Auto Resume" },
-      { label: "Baseplate Fixing", value: "Magnetic" },
-      { label: "Filtration", value: "Permanent filter ≥30,000 hours" },
+      { label: "Baseplate Fixing", value: "Quick-release magnetic fixed" },
+      {
+        label: "Layout Method",
+        value: "Fully automatic layout and path planning",
+      },
+      { label: "Filtration", value: "Permanent filter ≥ 30,000 hours" },
       {
         label: "Printable Materials",
-        value: "CoCr, Titanium Alloy, Pure Titanium",
+        value: "Cobalt-chromium alloy, titanium alloy, pure titanium",
       },
-      { label: "Software", value: "Vizus slicing & control suite" },
+      { label: "Software", value: "Vizus slicing & control software" },
       { label: "Cooling", value: "Water-cooled" },
       { label: "Power Input", value: "220 V AC single phase, ~1 kW avg" },
-      { label: "Protective Gas", value: "Nitrogen / Argon ≤1 L/h" },
+      { label: "Protective Gas", value: "Nitrogen, Argon" },
     ],
     images: ["/products/en-desk.png"],
     datasheet: "/docs/en-desk.pdf",
@@ -145,32 +179,47 @@ export const products: Product[] = [
       "Camera-equipped for safe remote monitoring",
       "Control software supports up to 36-galvanometer multi-laser splicing",
     ],
+    compliance: PRINTER_COMPLIANCE,
     specs: [
       { label: "Process", value: "SLM (Selective Laser Melting)" },
       { label: "Product Model", value: "EN-M140" },
-      { label: "Print Volume", value: "Ø140 mm × H170 mm" },
-      { label: "Dimension", value: "970×815×1750 mm (L×W×H)" },
-      { label: "Spot Size", value: "50–100 µm (adjustable)" },
+      { label: "Print Volume", value: "Ø140 mm × H100 mm / Ø140 mm × H170 mm" },
+      { label: "Dimension", value: "970 × 815 × 1750 mm (L×W×H)" },
+      { label: "Machine Weight", value: "450 kg" },
+      { label: "Beam Size", value: "50–100 µm (adjustable)" },
       { label: "Powder Layer Thickness", value: "20–120 µm (adjustable)" },
-      { label: "Scraper Type", value: "Flexible scraper" },
+      { label: "Recoater Type", value: "Flexible soft blade" },
       { label: "Number of Lasers", value: "Single laser" },
-      { label: "Laser Power", value: "500 W" },
+      { label: "Laser Power", value: "Single laser, 1 × 500 W" },
+      { label: "Rated Power", value: "1.5 kW" },
       { label: "Power Supply", value: "Single phase 220 V, ~1.5 kW" },
       { label: "Protective Gas", value: "Nitrogen, Argon" },
       { label: "Min. Oxygen", value: "≤100 ppm" },
       { label: "Cooling", value: "Water cooling" },
-      { label: "Baseplate Fixing", value: "Magnetic / Screw" },
+      {
+        label: "Baseplate Installation",
+        value: "Magnetic fixed / screw fixed",
+      },
       { label: "Powder Spreading", value: "Top feeding, one-way recoating" },
       { label: "Scan Speed", value: "0–10 m/s" },
       {
         label: "Accuracy",
         value: "±0.1 mm (L≤100 mm); ±0.1%×L (L>100 mm)",
       },
+      {
+        label: "Layout Method",
+        value: "Fully automatic layout and path planning",
+      },
       { label: "Max Powder / Charge", value: "3 L" },
       { label: "Power-Failure Resume", value: "Yes" },
       { label: "Auto Shutdown", value: "Yes" },
-      { label: "Printable Materials", value: "CoCr, TC4, Pure Ti" },
-      { label: "Filter", value: "Permanent ≥30,000 hours" },
+      {
+        label: "Printing Materials",
+        value:
+          "Stainless steel, titanium alloy, tool steel, high-entropy alloy, cobalt alloy, aluminum alloy, copper alloy, etc.",
+      },
+      { label: "Filtration Lifetime", value: "Permanent filter ≥ 30,000 hours" },
+      { label: "Software", value: "Vizus slicing & control software" },
       { label: "Warranty", value: "1 year" },
       { label: "Connection", value: "WiFi" },
       { label: "Production Capacity", value: "2000 pcs/year" },
@@ -194,39 +243,45 @@ export const products: Product[] = [
       "One-click layout (5 min) and one-click printing; software free forever",
       "Cost-price core components and 24-hour technical support",
     ],
+    compliance: PRINTER_COMPLIANCE,
     specs: [
       { label: "Process", value: "SLM (Selective Laser Melting), dual-laser" },
       { label: "Product Model", value: "EN-M220" },
-      {
-        label: "Printing Size",
-        value: "220×140×100 mm (up to 220×140×200 mm)",
-      },
+      { label: "Printing Size", value: "220 × 140 × 100/220 mm (L×W×H)" },
       { label: "Beam Size", value: "60–100 µm (adjustable)" },
       { label: "Powder Layer Thickness", value: "20–150 µm (adjustable)" },
-      { label: "Recoat Type", value: "Silicon rubber" },
+      { label: "Recoater Type", value: "Flexible soft blade" },
       { label: "Number of Lasers", value: "Dual lasers" },
-      { label: "Laser Power", value: "2 × 500 W" },
+      { label: "Laser Power", value: "Dual lasers, 2 × 500 W" },
+      { label: "Rated Power", value: "2 kW" },
       { label: "Power Supply", value: "AC 220 V ±10% / 50 Hz, 2 kW" },
-      { label: "Protective Gas", value: "Nitrogen / Argon ≤1 L/h" },
+      { label: "Protective Gas", value: "Nitrogen, Argon" },
       { label: "Min. Oxygen", value: "≤100 ppm" },
       { label: "Cooling", value: "Water cooling" },
-      { label: "Baseplate Fixing", value: "Magnetic / Screw" },
+      {
+        label: "Baseplate Installation",
+        value: "Magnetic fixed / screw fixed",
+      },
       { label: "Powder Spreading", value: "Top-down powder feeding" },
       { label: "Scan Speed", value: "0–10 m/s" },
       {
         label: "Accuracy",
         value: "±0.1 mm (L≤100 mm); ±0.1%×L (L>100 mm)",
       },
-      { label: "Typesetting", value: "Fully automatic layout & path planning" },
-      { label: "Filter", value: "Permanent ≥30,000 hours" },
       {
-        label: "Printable Materials",
-        value: "CoCr, Titanium alloy, Pure Titanium",
+        label: "Layout Method",
+        value: "Fully automatic layout and path planning",
       },
-      { label: "Printer Dimension", value: "1200×750×1820 mm (L×W×H)" },
+      { label: "Filtration Lifetime", value: "Permanent filter ≥ 30,000 hours" },
+      {
+        label: "Printing Materials",
+        value:
+          "Stainless steel, titanium alloy, tool steel, high-entropy alloy, CoCr alloy, aluminum alloy, copper alloy, etc.",
+      },
+      { label: "Printer Dimension", value: "1200 × 750 × 1820 mm (L×W×H)" },
       { label: "Max Powder Addition", value: "7 L" },
-      { label: "Net Weight", value: "550 kg" },
-      { label: "Software", value: "Vizus slicing & control suite" },
+      { label: "Machine Weight", value: "550 kg" },
+      { label: "Software", value: "Vizus slicing & control software" },
     ],
     images: ["/products/en-m220.png"],
     quotePdf: "/quotes/en-m220-quote.pdf",
@@ -236,7 +291,7 @@ export const products: Product[] = [
     slug: "en-m300",
     name: "EN-M300",
     category: "Industrial",
-    specLine: "Large-format SLM · steel, nickel, titanium & aluminum alloys",
+    specLine: "300 × 300 × 400 mm build · 2–4 × 500 W lasers · 100 cm³/h",
     priceCents: 34_900_000,
     inquiryOnly: true,
     description:
@@ -249,15 +304,31 @@ export const products: Product[] = [
       "Camera remote monitoring; strong stability and easy install",
       "CE certified; used in aerospace, automotive, medical and education",
     ],
+    compliance: PRINTER_COMPLIANCE,
     specs: [
       { label: "Model No.", value: "EN-M300" },
-      { label: "Dimensions", value: "1960×930×2222 mm (L×W×H)" },
       { label: "Forming Technology", value: "SLM (Selective Laser Melting)" },
+      { label: "Building Volume", value: "300 × 300 × 400 mm (L×W×H)" },
+      { label: "Dimensions", value: "1960 × 930 × 2222 mm (L×W×H)" },
+      { label: "Machine Weight", value: "1230 kg / 1260 kg" },
+      { label: "Laser Power", value: "2 or 4 lasers (optional), 1 × 500 W" },
+      { label: "Scanning Speed", value: "10 m/s (max)" },
+      { label: "Rated Power", value: "4 kW / 6 kW" },
+      { label: "Forming Rate", value: "100 cm³/h (max)" },
+      { label: "Optical System", value: "F-theta lens" },
+      { label: "Recoater Type", value: "Flexible soft blade" },
       {
-        label: "Material Class",
-        value:
-          "Metal powder — stainless steel, tool steel, nickel alloy, aluminum alloy, titanium alloy",
+        label: "Recoating Type",
+        value: "Top powder feeding, bidirectional recoating",
       },
+      { label: "Protective Gas", value: "Nitrogen, Argon ≤ 2 L/min" },
+      { label: "Filtration System", value: "Permanent filter ≥ 30,000 hours" },
+      {
+        label: "Printing Materials",
+        value:
+          "Tool steel, stainless steel, titanium alloy, superalloy, aluminum alloy, etc.",
+      },
+      { label: "Software", value: "Vizus slicing & control software" },
       { label: "Operating System", value: "Windows 10" },
       { label: "File Formats", value: "STEP, IGES, SLC, CLI, STL" },
       { label: "Nozzle Number", value: "1" },
@@ -273,7 +344,7 @@ export const products: Product[] = [
     slug: "en-m420",
     name: "EN-M420",
     category: "Industrial",
-    specLine: "Super-large multi-laser SLM · powder circulation system",
+    specLine: "420 × 420 mm build · multi-laser SLM · 240 cm³/h forming rate",
     priceCents: 62_900_000,
     inquiryOnly: true,
     description:
@@ -287,18 +358,39 @@ export const products: Product[] = [
       "Camera remote monitoring for safe, hands-off operation",
       "CE certified",
     ],
+    compliance: PRINTER_COMPLIANCE,
     specs: [
       { label: "Model No.", value: "EN-M420" },
-      { label: "Dimensions", value: "2753×1150×2340 mm (L×W×H)" },
       {
         label: "Forming Technology",
         value: "SLM (Selective Laser Melting), multi-laser",
       },
+      // NOTE: "Building Volume" and "Laser Power" are intentionally absent —
+      // the 2026 catalog (420×420×450 mm; 4 or 8 lasers) conflicts with the
+      // quote we issue (H400 mm; fixed quad-laser). Awaiting supplier
+      // confirmation — see Products/New Catalog/CHANGES-vs-current-site.md.
+      { label: "Dimensions", value: "2753 × 1150 × 2340 mm (L×W×H)" },
+      { label: "Machine Weight", value: "2000 kg" },
+      { label: "Rated Power", value: "10 kW" },
+      { label: "Scanning Speed", value: "10 m/s (max)" },
+      { label: "Forming Rate", value: "240 cm³/h (max)" },
       {
-        label: "Material Class",
-        value:
-          "Metal powder — stainless steel, tool steel, nickel alloy, aluminum alloy, titanium alloy",
+        label: "Galvo Type",
+        value: "Raster-type high-precision digital encoding lens",
       },
+      { label: "Recoater Type", value: "Flexible soft blade" },
+      {
+        label: "Recoating Type",
+        value: "Top powder feeding, bidirectional recoating",
+      },
+      { label: "Protective Gas", value: "Nitrogen, Argon" },
+      { label: "Filtration Lifetime", value: "Permanent filter ≥ 30,000 hours" },
+      {
+        label: "Printing Materials",
+        value:
+          "Tool steel, stainless steel, titanium alloy, superalloy, aluminum alloy, etc.",
+      },
+      { label: "Software", value: "Vizus slicing & control software" },
       { label: "Operating System", value: "Windows 10" },
       { label: "File Formats", value: "STEP, IGES, SLC, CLI, STL" },
       { label: "Nozzle Number", value: "1" },
@@ -327,26 +419,42 @@ export const products: Product[] = [
       "Stainless, tool steel, nickel, aluminum & titanium alloys — under 100 µm precision",
       "Efficient filter cartridge and air management; data processing in ~5 minutes",
     ],
+    compliance: PRINTER_COMPLIANCE,
     specs: [
       { label: "Model No.", value: "EN-M800" },
       {
         label: "Forming Technology",
         value: "SLM (Selective Laser Melting), multi-laser",
       },
+      // NOTE: "Number of Lasers" is held at the current value — the 2026
+      // catalog says 6 or 8 (optional), 1 × 500 W. Awaiting supplier
+      // confirmation — see Products/New Catalog/CHANGES-vs-current-site.md.
       { label: "Number of Lasers", value: "4 (multi-laser)" },
-      { label: "Build Format", value: "Super-large / extra-large format" },
-      { label: "Precision", value: "<100 µm" },
-      { label: "Layer Thickness", value: "150–200 µm" },
+      { label: "Building Volume", value: "650 × 650 × 1100 mm (L×W×H)" },
+      { label: "Dimensions", value: "6600 × 4050 × 5800 mm (L×W×H)" },
+      { label: "Machine Weight", value: "6000 kg" },
+      { label: "Rated Power", value: "20 kW" },
+      { label: "Scanning Speed", value: "10 m/s (max)" },
+      { label: "Forming Rate", value: "240 cm³/h (max)" },
+      { label: "Preheating Temperature", value: "200 °C" },
+      {
+        label: "Galvo Type",
+        value: "Raster-type high-precision digital encoding lens",
+      },
+      {
+        label: "Recoating Type",
+        value: "Top powder feeding, bidirectional recoating",
+      },
       { label: "Powder Feeding", value: "Bidirectional, variable-speed" },
       { label: "Motion Control", value: "Z-axis closed-loop" },
+      { label: "Protective Gas", value: "Nitrogen, Argon" },
+      { label: "Filtration Lifetime", value: "Permanent filter ≥ 30,000 hours" },
       {
-        label: "Material Class",
+        label: "Printing Materials",
         value:
-          "Metal powder — stainless steel, tool steel, nickel alloy, aluminum alloy, titanium alloy",
+          "Tool steel, stainless steel, titanium alloy, superalloy, aluminum alloy, etc.",
       },
-      { label: "Operating System", value: "Windows 10" },
-      { label: "File Formats", value: "STEP, IGES, SLC, CLI, STL" },
-      { label: "Connection", value: "WiFi" },
+      { label: "Software", value: "Vizus slicing & control software" },
       { label: "Warranty", value: "One Year" },
     ],
     images: ["/products/en-m800.png"],
@@ -422,6 +530,53 @@ export const products: Product[] = [
       "/products/en-atomizer-powder.jpg",
       "/products/en-atomizer-moist-powder.jpg",
     ],
+  },
+
+  {
+    slug: "en-g1",
+    name: "EN-G1",
+    category: "Thermal",
+    specLine: "140 × 140 × 180 mm build · 500 W green laser · copper & thermal parts",
+    priceCents: null,
+    inquiryOnly: true,
+    description:
+      "A green-laser system built for one job most metal printers cannot do: copper. Copper reflects the infrared light conventional fiber lasers use, which is why it is so difficult to print well. The EN-G1 runs a single-mode green fiber laser that copper actually absorbs — so you get dense, fully-fused parts instead of porous ones. That unlocks the geometry thermal engineers have always wanted but could never cast or machine: internal lattice cold plates, conformal liquid-cooling channels, and heat exchangers with walls down to 0.1 mm. With a 15–40 µm beam and scene-intelligent focusing, it holds micro-level detail across the whole build. Aimed squarely at data-center liquid cooling, power electronics, and aerospace thermal management — and, like every Envishon machine, it runs Vizus and is supported by our US-based team.",
+    highlights: [
+      "Green fiber laser — prints copper properly, where infrared lasers struggle with reflectivity",
+      "\"Zero-penetration\" ultra-high-density forming — dense parts, not porous ones",
+      "Micro-level precision — 15–40 µm beam, minimum wall thickness 0.1 mm",
+      "Built for liquid cooling — lattice cold plates, conformal channels, heat exchangers",
+      "Scene intelligent focusing holds detail across the full build area",
+      "Permanent filter — 0 cost, 0 replacement, 0 risk",
+      "Runs Vizus slicing & control, like the rest of the lineup",
+    ],
+    compliance: PRINTER_COMPLIANCE,
+    specs: [
+      { label: "Process", value: "SLM (Selective Laser Melting)" },
+      { label: "Printer Model", value: "EN-G1" },
+      { label: "Build Size", value: "140 × 140 × 180 mm (L×W×H)" },
+      { label: "Laser Source", value: "Single-mode green fiber laser, 500 W" },
+      { label: "Beam Diameter", value: "15–40 µm" },
+      { label: "Layer Thickness", value: "20–120 µm" },
+      { label: "Printing Accuracy", value: "Min. wall thickness 0.1 mm" },
+      { label: "Focus System", value: "Scene intelligent focusing" },
+      { label: "Scanning Speed", value: "7 m/s (max)" },
+      { label: "Computing Power", value: "TFLOPS" },
+      { label: "Dimensions", value: "1770 × 810 × 1750 mm (L×W×H)" },
+      { label: "Filtration", value: "Permanent filter — 0 cost, 0 replacement" },
+      { label: "Software", value: "Vizus slicing & control suite" },
+      {
+        label: "Printable Materials",
+        value: "Copper and copper alloys; high-reflectivity metals",
+      },
+      {
+        label: "Applications",
+        value:
+          "Thermal management, power electronics, industrial manufacturing, aerospace",
+      },
+    ],
+    images: ["/products/en-g1.png"],
+    featured: true,
   },
 
   // ─── COMING SOON ─────────────────────────────────────────────────────────
