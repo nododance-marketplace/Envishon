@@ -10,6 +10,7 @@ import { CartIcon, MenuIcon, CloseIcon } from "@/components/ui/icons";
 
 const NAV = [
   { href: "/shop", label: "Shop" },
+  { href: "/vizus", label: "Vizus AI" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
