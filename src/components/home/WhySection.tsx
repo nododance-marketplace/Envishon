@@ -38,7 +38,7 @@ export function WhySection() {
               Why Envishon
             </p>
             <span className="hud-chip hidden sm:inline-flex">
-              SEC 01 · SOURCING
+              SEC 02 · SOURCING
             </span>
           </div>
           <h2 className="mt-5 max-w-2xl font-heading text-4xl font-medium tracking-tight text-white sm:text-5xl text-balance">
