@@ -1,10 +1,16 @@
 import { Reveal } from "@/components/ui/Reveal";
 
 /**
- * Home film band — the official Envishon walkthrough. This is a NARRATED
- * video (real audio), so it plays with controls and a poster rather than as a
- * muted background loop. It sits as the second section on the home page, right
- * under the hero, so it's the first full thing a visitor sees on scroll.
+ * Home film band — sits as the second section, right under the hero.
+ *
+ *  1. The official narrated walkthrough (real audio) — plays with controls +
+ *     poster, so a visitor watches it deliberately.
+ *  2. The full-lineup loop underneath — a silent, auto-playing background loop
+ *     of every printer together.
+ *
+ *  Both use the edge-fade mask (see globals.css) so the footage dissolves into
+ *  the near-black page instead of sitting in a hard rectangular card. The
+ *  narrated player uses the bottom-safe variant so its controls stay legible.
  */
 export function FilmBand() {
   return (
@@ -26,19 +32,37 @@ export function FilmBand() {
         </p>
       </Reveal>
 
+      {/* Narrated official video — controls + poster, bottom-safe feather */}
       <Reveal delay={120} className="mt-12">
-        <div className="overflow-hidden rounded-2xl border border-base-700/80 bg-base-900 shadow-depth-lg">
-          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-          <video
-            className="aspect-video w-full bg-base-900"
-            controls
-            preload="metadata"
-            playsInline
-            poster="/video/official-poster.jpg"
-          >
-            <source src="/video/official.mp4" type="video/mp4" />
-          </video>
-        </div>
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          className="edge-fade-b aspect-video w-full"
+          controls
+          preload="metadata"
+          playsInline
+          poster="/video/official-poster.jpg"
+        >
+          <source src="/video/official.mp4" type="video/mp4" />
+        </video>
+      </Reveal>
+
+      {/* The full lineup — silent looping background reel, fully feathered */}
+      <Reveal delay={80} className="mt-16">
+        <p className="mb-5 text-center font-mono text-[10px] uppercase tracking-[0.24em] text-graphite">
+          The full lineup
+        </p>
+        <video
+          className="edge-fade aspect-video w-full"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/video/printers-loop-poster.jpg"
+          aria-label="The full Envishon printer lineup"
+        >
+          <source src="/video/printers-loop.mp4" type="video/mp4" />
+        </video>
       </Reveal>
     </section>
   );

@@ -23,9 +23,9 @@ export default function ShopPage() {
       {/* Header banner — the real SLM line running: factory floor, laser melt,
           finished parts. Muted + looped so it plays inline everywhere; the
           poster covers first paint and autoplay-blocked browsers. */}
-      <section className="relative aspect-[16/7] overflow-hidden rounded-3xl border border-white/[0.08] bg-base-900">
+      <section className="relative aspect-[16/7] overflow-hidden">
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          className="edge-fade absolute inset-0 h-full w-full object-cover"
           autoPlay
           muted
           loop

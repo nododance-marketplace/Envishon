@@ -240,6 +240,68 @@
   .text-pretty {
     text-wrap: pretty;
   }
+
+  /* ── Edge-fade / feather for video ───────────────────────────────────
+     Softens the hard rectangular cut-off so footage dissolves into the
+     near-black page instead of sitting in a card. Two crossed linear
+     gradients intersect to feather all four edges; the center stays fully
+     opaque. Pairs with a matching bg-base so the transparent edge reads as
+     "fading into the background". */
+  .edge-fade {
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 8%,
+        #000 92%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        #000 9%,
+        #000 91%,
+        transparent 100%
+      );
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 8%,
+        #000 92%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        #000 9%,
+        #000 91%,
+        transparent 100%
+      );
+    mask-composite: intersect;
+  }
+
+  /* Sides + top feather, gentle bottom — for players with visible controls
+     so the control bar stays legible. */
+  .edge-fade-b {
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 7%,
+        #000 93%,
+        transparent 100%
+      ),
+      linear-gradient(to bottom, transparent 0%, #000 8%, #000 98%, #000 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 7%,
+        #000 93%,
+        transparent 100%
+      ),
+      linear-gradient(to bottom, transparent 0%, #000 8%, #000 98%, #000 100%);
+    mask-composite: intersect;
+  }
 }
 
 /* Respect users who prefer less motion — kill the ambient loops. */

@@ -626,9 +626,14 @@ export default function VizusPage() {
           <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
             <div className={f.reverse ? "lg:order-2" : ""}>
               {f.video ? (
-                <div className="overflow-hidden rounded-xl border border-base-600/80 shadow-depth-lg">
-                  <video src={f.video} autoPlay muted loop playsInline className="w-full" />
-                </div>
+                <video
+                  src={f.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="edge-fade w-full"
+                />
               ) : (
                 <Mockup kind={f.mockup} />
               )}
