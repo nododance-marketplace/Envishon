@@ -13,7 +13,7 @@ import type { Category, Product } from "@/lib/types";
  *  TO EDIT A PRODUCT:   change name / price / specLine / description / specs.
  *                       keep `slug` unique + URL-safe (it becomes the URL).
  *  TO ADD AN IMAGE:     drop a file in /public/products/ and add its path to
- *                       `images` (e.g. "/products/en-m220.png").
+ *                       `images` (e.g. "/products/en-m220.jpg").
  *  TO FEATURE ON HOME:  set `featured: true` (homepage shows up to 4).
  *  ─────────────────────────────────────────────────────────────────────────
  */
@@ -157,7 +157,7 @@ export const products: Product[] = [
       { label: "Power Input", value: "220 V AC single phase, ~1 kW avg" },
       { label: "Protective Gas", value: "Nitrogen, Argon" },
     ],
-    images: ["/products/en-desk.png"],
+    images: ["/products/en-desk.jpg"],
     datasheet: "/docs/en-desk.pdf",
     quotePdf: "/quotes/en-desk-quote.pdf",
     featured: true,
@@ -224,7 +224,7 @@ export const products: Product[] = [
       { label: "Connection", value: "WiFi" },
       { label: "Production Capacity", value: "2000 pcs/year" },
     ],
-    images: ["/products/en-m140.png"],
+    images: ["/products/en-m140.jpg"],
     quotePdf: "/quotes/en-m140-quote.pdf",
   },
   {
@@ -283,7 +283,7 @@ export const products: Product[] = [
       { label: "Machine Weight", value: "550 kg" },
       { label: "Software", value: "Vizus slicing & control software" },
     ],
-    images: ["/products/en-m220.png"],
+    images: ["/products/en-m220.jpg"],
     quotePdf: "/quotes/en-m220-quote.pdf",
     featured: true,
   },
@@ -336,7 +336,7 @@ export const products: Product[] = [
       { label: "Warranty", value: "One Year" },
       { label: "Production Capacity", value: "2000 pcs/year" },
     ],
-    images: ["/products/en-m300.png"],
+    images: ["/products/en-m300.jpg"],
     quotePdf: "/quotes/en-m300-quote.pdf",
     featured: true,
   },
@@ -398,7 +398,7 @@ export const products: Product[] = [
       { label: "Warranty", value: "One Year" },
       { label: "Production Capacity", value: "2000 pcs/year" },
     ],
-    images: ["/products/en-m420.png"],
+    images: ["/products/en-m420.jpg"],
     quotePdf: "/quotes/en-m420-quote.pdf",
     featured: true,
   },
@@ -457,7 +457,7 @@ export const products: Product[] = [
       { label: "Software", value: "Vizus slicing & control software" },
       { label: "Warranty", value: "One Year" },
     ],
-    images: ["/products/en-m800.png"],
+    images: ["/products/en-m800.jpg"],
     quotePdf: "/quotes/en-m800-quote.pdf",
   },
 
@@ -575,7 +575,7 @@ export const products: Product[] = [
           "Thermal management, power electronics, industrial manufacturing, aerospace",
       },
     ],
-    images: ["/products/en-g1.png"],
+    images: ["/products/en-g1.jpg"],
     featured: true,
   },
 
