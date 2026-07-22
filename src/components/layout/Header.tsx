@@ -9,7 +9,7 @@ import { MenuIcon, CloseIcon, ArrowRightIcon } from "@/components/ui/icons";
 const NAV = [
   { href: "/services", label: "Services" },
   { href: "/platforms", label: "Platforms" },
-  { href: "/vizus", label: "Vizus AI" },
+  { href: "/vizus", label: "Text-to-CAD" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];

@@ -47,21 +47,24 @@ export function PillarGrid() {
         })}
       </div>
 
-      {/* Vizus AI — the fourth offering, teased and linked out */}
+      {/* Text-to-CAD — the fourth offering, teased and linked out. Coming soon. */}
       <Reveal delay={120} className="mt-5">
         <Link
           href={VIZUS_TEASER.href}
           className="group flex flex-col items-start justify-between gap-4 rounded-2xl border border-accent/25 bg-accent/[0.05] p-6 transition-colors hover:border-accent/50 sm:flex-row sm:items-center"
         >
           <p className="text-[15px] leading-relaxed text-titanium">
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent-ember">
+            <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-accent-ember">
               Also from Envishon
+              <span className="rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-[9px] tracking-[0.18em] text-accent-ember">
+                Coming soon
+              </span>
             </span>
             <br className="hidden sm:block" />
             {VIZUS_TEASER.blurb}
           </p>
           <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.18em] text-accent-ember transition-colors group-hover:text-white">
-            Open Vizus AI
+            Preview Text-to-CAD
             <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </span>
         </Link>

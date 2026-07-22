@@ -48,9 +48,10 @@ export const PILLARS: PillarSummary[] = [
   },
 ];
 
-/** Vizus AI — a fourth thing Envishon offers, linked out (page untouched). */
+/** Text-to-CAD — a fourth thing Envishon offers, linked out. Coming soon. */
 export const VIZUS_TEASER = {
   href: "/vizus",
-  title: "Vizus AI",
-  blurb: "And the software to design what you print — meet Vizus AI.",
+  title: "Text-to-CAD",
+  comingSoon: true,
+  blurb: "And the software to design what you print — meet Text-to-CAD.",
 };

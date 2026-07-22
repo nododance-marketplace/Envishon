@@ -86,7 +86,7 @@ export function Footer() {
                   href="/vizus"
                   className="text-titanium hover:text-accent-ember"
                 >
-                  Vizus AI
+                  Text-to-CAD
                 </Link>
               </li>
             </ul>

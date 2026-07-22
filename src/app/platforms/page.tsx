@@ -1,111 +1,124 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAvailableProducts } from "@/data/products";
-import { ShopGrid } from "@/components/product/ShopGrid";
-import { ArrowRightIcon } from "@/components/ui/icons";
+import { Reveal } from "@/components/ui/Reveal";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import {
+  ArrowRightIcon,
+  LayersIcon,
+  BeamIcon,
+  SparkIcon,
+} from "@/components/ui/icons";
 
 export const metadata: Metadata = {
   title: "Platforms we service",
   description:
-    "The SLM/LPBF metal 3D printers and additive systems Envishon installs, trains on, and supports. Spec-for-spec proof of what we know — not a store.",
+    "The equipment Envishon trains and supports on — metal 3D printers, laser welders, and laser cleaning systems. Specific platforms coming soon.",
 };
 
+/**
+ * Platforms — one placeholder per service pillar for now. The full machine
+ * catalog was removed; specific platforms will be added later. Each card is a
+ * gateway to the service that runs on that equipment.
+ */
+const PLACEHOLDERS = [
+  {
+    href: "/services/additive",
+    icon: LayersIcon,
+    tag: "Metal Additive",
+    title: "Metal 3D Printer",
+    blurb:
+      "SLM/LPBF metal printers — the platform we install, calibrate, train operators on, and support.",
+  },
+  {
+    href: "/services/laser-welding",
+    icon: BeamIcon,
+    tag: "Laser Welding",
+    title: "Laser Welding Machine",
+    blurb:
+      "Handheld fiber laser welding systems for steel, stainless, and aluminum — service and training.",
+  },
+  {
+    href: "/services/laser-cleaning",
+    icon: SparkIcon,
+    tag: "Laser Cleaning",
+    title: "Laser Cleaning System",
+    blurb:
+      "Laser ablation systems that strip rust, coatings, and contamination without touching the base metal.",
+  },
+];
+
 export default function PlatformsPage() {
-  const platforms = getAvailableProducts();
-
   return (
-    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      {/* Header banner — the real SLM line running. */}
-      <section className="relative aspect-[16/7] overflow-hidden">
-        <video
-          className="edge-fade absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/video/shop-slm-poster.jpg"
-          aria-label="Envishon supporting SLM metal printers on the factory floor"
-        >
-          <source src="/video/shop-slm.mp4" type="video/mp4" />
-        </video>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-base via-base/10 to-base/20" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-base to-transparent" />
-        <span className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-base/50 px-3 py-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-titanium backdrop-blur">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse-ring motion-reduce:animate-none" />
-          The systems we support
-        </span>
-        <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
-          <p className="max-w-md font-heading text-lg leading-tight text-white sm:text-2xl">
-            The platforms we install, train on, and keep running.
-          </p>
-          <span className="hidden font-mono text-[11px] uppercase tracking-[0.2em] text-steel sm:block">
-            SLM · LPBF · GREEN LASER
-          </span>
-        </div>
-      </section>
-
-      <header className="mt-14 max-w-2xl">
+    <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <header className="max-w-2xl">
         <p className="kicker">
           <span className="h-px w-8 bg-accent/60" />
           Platforms
         </p>
         <h1 className="mt-5 font-heading text-4xl font-medium tracking-tight text-white sm:text-6xl text-balance">
-          The machines we service.
+          The equipment behind the work.
         </h1>
         <p className="mt-5 text-base leading-relaxed text-steel text-pretty">
-          These are the SLM/LPBF metal printers and additive systems Envishon
-          installs, commissions, trains operators on, and supports. This
-          isn&apos;t a catalog to buy from — the specs are here as proof of what
-          we know. Bring your own machine, or ask us which platform fits your
-          work.
+          Envishon is equipment-agnostic — we work across common platforms for
+          each service. Specific machines are being added here. For now, here&apos;s
+          the shape of what we install, train on, and support.
         </p>
-        <div className="mt-7 flex flex-wrap gap-3">
-          <Link href="/services/additive" className="btn-spark group px-6 py-3 text-sm">
-            Training &amp; support
-            <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-          <Link href="/contact" className="btn-ghost px-6 py-3 text-sm">
-            Ask which platform fits
-          </Link>
-        </div>
       </header>
 
-      <div className="mt-14">
-        <Suspense fallback={<GridSkeleton />}>
-          <ShopGrid products={platforms} />
-        </Suspense>
+      <div className="mt-14 grid gap-5 lg:grid-cols-3">
+        {PLACEHOLDERS.map((p, i) => {
+          const Icon = p.icon;
+          return (
+            <Reveal key={p.href} delay={i * 110} from="up">
+              <SpotlightCard
+                as="article"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-base-900/60 shadow-depth"
+              >
+                {/* Placeholder visual */}
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-base-800">
+                  <div className="absolute inset-0 tech-grid opacity-70" />
+                  <div className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/[0.12] blur-[70px]" />
+                  <div className="absolute inset-0 flex items-center justify-center text-steel/60">
+                    <Icon className="h-14 w-14" />
+                  </div>
+                  <span className="absolute right-3 top-3 rounded-md border border-accent/40 bg-accent/10 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-accent-ember backdrop-blur">
+                    Coming soon
+                  </span>
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.18em] text-steel/70">
+                    <span>{p.tag}</span>
+                    <span>Platform TBD</span>
+                  </div>
+                </div>
+
+                <div className="relative z-[2] flex flex-1 flex-col gap-3 p-6">
+                  <div className="rule-ticks" aria-hidden="true" />
+                  <h3 className="font-heading text-xl tracking-tight text-white">
+                    {p.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-steel text-pretty">
+                    {p.blurb}
+                  </p>
+                  <Link
+                    href={p.href}
+                    className="group/link mt-auto inline-flex items-center gap-1.5 pt-4 text-sm text-accent-ember transition-colors hover:text-white"
+                  >
+                    Explore the service
+                    <ArrowRightIcon className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
+                  </Link>
+                </div>
+              </SpotlightCard>
+            </Reveal>
+          );
+        })}
       </div>
 
-      {/* Honest close: this is a services company, not a reseller. */}
       <p className="mx-auto mt-16 max-w-2xl text-center text-sm leading-relaxed text-steel">
-        Don&apos;t see your machine? We work across common SLM/LPBF platforms.{" "}
+        Running a machine we haven&apos;t listed yet?{" "}
         <Link href="/contact" className="text-accent hover:text-accent-signal">
-          Tell us what you run
+          Tell us what you have
         </Link>{" "}
         and we&apos;ll tell you how we can help.
       </p>
-    </div>
-  );
-}
-
-function GridSkeleton() {
-  return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {Array.from({ length: 6 }).map((_, i) => (
-        <div
-          key={i}
-          className="overflow-hidden rounded-2xl border border-white/[0.07]"
-        >
-          <div className="skeleton aspect-[4/3] w-full" />
-          <div className="space-y-3 p-6">
-            <div className="skeleton h-4 w-20 rounded-full" />
-            <div className="skeleton h-5 w-2/3 rounded" />
-            <div className="skeleton h-4 w-full rounded" />
-          </div>
-        </div>
-      ))}
     </div>
   );
 }
