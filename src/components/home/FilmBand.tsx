@@ -19,16 +19,16 @@ export function FilmBand() {
         <div className="flex items-baseline justify-between gap-4">
           <p className="kicker">
             <span className="h-px w-8 bg-accent/60" />
-            The walkthrough
+            Inside the work
           </p>
-          <span className="hud-chip hidden sm:inline-flex">SEC 01 · FILM</span>
+          <span className="hud-chip hidden sm:inline-flex">SEC 02 · FILM</span>
         </div>
         <h2 className="mt-5 max-w-2xl font-heading text-4xl font-medium tracking-tight text-white sm:text-5xl text-balance">
-          See the machines run.
+          The machines we make produce.
         </h2>
         <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-steel text-pretty">
-          A walk through the shop — the machines, the powder, and the metal
-          parts coming off the plate. Sound on.
+          A walk through the floor — the SLM platforms, the powder, and the
+          metal parts coming off the plate. Sound on.
         </p>
       </Reveal>
 

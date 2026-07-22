@@ -21,27 +21,27 @@ export function CtaBand() {
 
         <Reveal className="relative mx-auto max-w-2xl text-center">
           <p className="kicker justify-center">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse-ring" />
-            Let&apos;s talk hardware
+            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse-ring motion-reduce:animate-none" />
+            Let&apos;s make it produce
           </p>
           <h2 className="mt-6 font-heading text-4xl font-medium leading-[1.02] tracking-tight text-white sm:text-6xl text-balance">
-            Bring metal printing
-            <br className="hidden sm:block" /> in-house.
+            Capability,
+            <br className="hidden sm:block" /> not a box.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-steel text-pretty">
-            Tell us what you make. We&apos;ll match you to the right machine,
-            quote freight and install included, and support it stateside from
-            day one.
+            Tell us what you run and what you&apos;re trying to make. We&apos;ll
+            scope the right engagement — training, installation, support, or
+            laser work — and be straight with you about what fits.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Magnetic>
               <Link href="/contact" className="btn-spark group px-8 py-4 text-sm">
-                Talk to Sales
+                Talk to our team
                 <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Magnetic>
-            <Link href="/shop" className="btn-ghost px-8 py-4 text-sm">
-              Browse the catalog
+            <Link href="/services" className="btn-ghost px-8 py-4 text-sm">
+              Explore services
             </Link>
           </div>
         </Reveal>

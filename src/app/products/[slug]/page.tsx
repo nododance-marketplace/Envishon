@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProductBySlug, products, CATEGORY_META, formatPrice } from "@/data/products";
-import { getAccessoryConfig } from "@/data/accessories";
+import { getProductBySlug, products, CATEGORY_META } from "@/data/products";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { CategoryBadge } from "@/components/product/CategoryBadge";
-import { AccessoryConfigurator } from "@/components/product/AccessoryConfigurator";
-import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import {
   ArrowRightIcon,
   CheckIcon,
   DownloadIcon,
-  FileTextIcon,
   ShieldIcon,
 } from "@/components/ui/icons";
 
@@ -19,21 +15,21 @@ interface PageProps {
   params: { slug: string };
 }
 
-// Pre-render every (available) product page at build time.
+// Pre-render every serviceable platform page at build time.
 export function generateStaticParams() {
   return products.filter((p) => !p.comingSoon).map((p) => ({ slug: p.slug }));
 }
 
 export function generateMetadata({ params }: PageProps): Metadata {
   const product = getProductBySlug(params.slug);
-  if (!product) return { title: "Product not found" };
+  if (!product) return { title: "Platform not found" };
   return {
-    title: product.name,
-    description: `${product.name} — ${product.specLine}. ${product.description}`,
+    title: `${product.name} — Platform we service`,
+    description: `${product.name} — ${product.specLine}. Envishon installs, trains, and supports this platform.`,
   };
 }
 
-export default function ProductDetailPage({ params }: PageProps) {
+export default function PlatformDetailPage({ params }: PageProps) {
   const product = getProductBySlug(params.slug);
   if (!product || product.comingSoon) notFound();
 
@@ -46,36 +42,34 @@ export default function ProductDetailPage({ params }: PageProps) {
     )
     .slice(0, 3);
 
-  const accessoryConfig = getAccessoryConfig(product.slug);
-  const isBuyable = product.priceCents != null && !product.inquiryOnly;
-
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-steel">
-        <Link href="/shop" className="transition-colors hover:text-accent-ember">
-          Shop
+        <Link
+          href="/platforms"
+          className="transition-colors hover:text-accent-ember"
+        >
+          Platforms
         </Link>
         <span className="text-steel/40">/</span>
         <span className="text-titanium">{product.name}</span>
       </nav>
 
       <div className="mt-8 grid gap-12 lg:grid-cols-2 lg:gap-16">
-        {/* Gallery — pins on desktop so the machine stays in view while the
-            long technical readout scrolls beside it. */}
+        {/* Gallery — pins on desktop while the readout scrolls beside it. */}
         <div className="lg:sticky lg:top-24 lg:self-start">
           <ProductGallery
             images={product.images}
             name={product.name}
             category={product.category}
           />
-          {/* HUD footer under the imagery — quiet instrumentation */}
           <div className="mt-4 hidden items-center justify-between lg:flex">
             <span className="hud-chip">
               {product.category} · {product.slug.toUpperCase()}
             </span>
             <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-graphite">
-              ENVISHON // US
+              ENVISHON // AMERICAS
             </span>
           </div>
         </div>
@@ -85,7 +79,7 @@ export default function ProductDetailPage({ params }: PageProps) {
           <div className="flex items-center justify-between gap-3">
             <CategoryBadge category={product.category} />
             <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-graphite">
-              P/N {product.slug.toUpperCase()}
+              PLATFORM · {product.slug.toUpperCase()}
             </span>
           </div>
           <h1 className="mt-4 font-heading text-4xl font-medium tracking-tight text-white sm:text-5xl">
@@ -99,99 +93,36 @@ export default function ProductDetailPage({ params }: PageProps) {
             {product.description}
           </p>
 
-          {isBuyable && accessoryConfig && accessoryConfig.mode !== "tbd" ? (
-            <AccessoryConfigurator
-              product={product}
-              config={accessoryConfig}
-              buyable={isBuyable}
-            />
-          ) : product.priceCents != null && !product.inquiryOnly ? (
-            <>
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-                <span className="font-heading text-2xl text-white">
-                  {formatPrice(product.priceCents)}
-                </span>
-                <AddToCartButton product={product} />
-              </div>
-              <p className="mt-3 text-xs text-steel">
-                Secure checkout powered by Stripe. Need volume pricing,
-                financing, or freight details?{" "}
-                <Link
-                  href="/contact"
-                  className="text-accent hover:text-accent-signal"
-                >
-                  Contact our US-based team
-                </Link>
-                .
-              </p>
-            </>
-          ) : (
-            <>
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-                {product.priceCents != null ? (
-                  <span className="font-heading text-2xl text-white">
-                    From {formatPrice(product.priceCents)}
-                  </span>
-                ) : (
-                  <span className="text-sm uppercase tracking-[0.2em] text-steel">
-                    Pricing on request
-                  </span>
-                )}
-                <Link href="/contact" className="btn-spark group px-7 py-3.5 text-sm">
-                  Talk to Sales
-                  <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-              <p className="mt-3 text-xs text-steel">
-                {product.inquiryOnly
-                  ? "Every engagement is scoped on a quick, no-pressure call — tell us about your business and we’ll show you exactly what’s possible."
-                  : "This machine is configured to order. Our US-based team will prepare a quote with freight and installation included."}
-              </p>
-            </>
-          )}
-
-          {/* Downloadable quotation PDF */}
-          {product.quotePdf && (
-            <a
-              href={product.quotePdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/[0.06] px-6 py-3 text-sm font-medium text-accent transition-colors hover:border-accent hover:bg-accent/15"
-            >
-              <FileTextIcon className="h-4 w-4" />
-              View Quotation (PDF)
-            </a>
-          )}
-
-          {/* Competitor price comparison */}
-          {product.compareAtCents != null && product.priceCents != null && (
-            <div className="mt-5 rounded-xl border border-accent/25 bg-accent/[0.05] px-5 py-4">
-              <p className="text-sm leading-relaxed text-titanium">
-                Competitors list comparable machines at{" "}
-                <span className="text-steel line-through">
-                  {formatPrice(product.compareAtCents)}
-                </span>
-                . You save{" "}
-                <span className="font-semibold text-accent">
-                  {formatPrice(product.compareAtCents - product.priceCents)}
-                </span>{" "}
-                with Envishon.
-              </p>
-              {product.compareUrl && (
-                <a
-                  href={product.compareUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-1.5 inline-flex items-center gap-1 text-xs text-accent transition-colors hover:text-accent-signal"
-                >
-                  See a competitor&apos;s price for yourself
-                  <ArrowRightIcon className="h-3.5 w-3.5" />
-                </a>
-              )}
+          {/* Services CTA — this is a platform Envishon supports, not a product
+              for sale. Route buyers to training and support, never checkout. */}
+          <div className="mt-8 rounded-2xl border border-accent/25 bg-accent/[0.05] p-6">
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent-ember">
+              A platform we service
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-titanium">
+              Envishon installs, calibrates, and commissions this class of
+              machine, then trains your operators to run it safely — and
+              supports it after. We don&apos;t sell the box; we make sure it
+              produces.
+            </p>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <Link
+                href="/contact"
+                className="btn-spark group px-6 py-3 text-sm"
+              >
+                Get trained on this platform
+                <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/services/additive"
+                className="btn-ghost px-6 py-3 text-sm"
+              >
+                Request support
+              </Link>
             </div>
-          )}
+          </div>
 
-          {/* Downloadable spec sheet */}
+          {/* Downloadable spec sheet — kept; it's proof of expertise. */}
           {product.datasheet && (
             <a
               href={product.datasheet}
@@ -213,7 +144,10 @@ export default function ProductDetailPage({ params }: PageProps) {
               </h2>
               <ul className="mt-5 space-y-3">
                 {product.highlights.map((point) => (
-                  <li key={point} className="flex gap-3 text-sm leading-relaxed text-titanium">
+                  <li
+                    key={point}
+                    className="flex gap-3 text-sm leading-relaxed text-titanium"
+                  >
                     <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                     <span>{point}</span>
                   </li>
@@ -222,8 +156,7 @@ export default function ProductDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Spec table — technical readout: indexed rows, machined rules,
-              aligned mono columns. Reads like the machine's own datasheet. */}
+          {/* Spec table — the datasheet, kept as proof of expertise. */}
           <div className="mt-12">
             <div className="flex items-baseline justify-between">
               <h2 className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent-ember">
@@ -259,10 +192,7 @@ export default function ProductDetailPage({ params }: PageProps) {
             <div className="rule-ticks rotate-180" aria-hidden="true" />
           </div>
 
-          {/* Manufacturer compliance — attributed to the factory, never
-              restated as Envishon's own. Text only: the official CE / FDA /
-              ISO marks are deliberately not used (the FDA logo may not be
-              displayed by private companies). See products.ts. */}
+          {/* Manufacturer compliance — attributed to the factory. */}
           {product.compliance && (
             <div className="mt-8 rounded-2xl border border-white/[0.07] bg-base-900/60 p-5">
               <div className="flex items-center gap-2">
@@ -286,7 +216,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Related */}
+      {/* Related platforms */}
       {related.length > 0 && (
         <section className="mt-28">
           <div className="flex items-end justify-between">
@@ -294,7 +224,7 @@ export default function ProductDetailPage({ params }: PageProps) {
               More {product.category}
             </h2>
             <Link
-              href={`/shop?category=${encodeURIComponent(product.category)}`}
+              href={`/platforms?category=${encodeURIComponent(product.category)}`}
               className="group inline-flex items-center gap-1.5 text-sm text-accent transition-colors hover:text-accent-signal"
             >
               View category

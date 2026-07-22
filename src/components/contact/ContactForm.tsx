@@ -7,10 +7,25 @@ interface FormValues {
   name: string;
   company: string;
   email: string;
+  interest: string;
   message: string;
 }
 
-const EMPTY: FormValues = { name: "", company: "", email: "", message: "" };
+const EMPTY: FormValues = {
+  name: "",
+  company: "",
+  email: "",
+  interest: "",
+  message: "",
+};
+
+const INTERESTS = [
+  "Metal AM — training & support",
+  "Laser welding",
+  "Laser cleaning & rust removal",
+  "Ongoing support / diagnostics",
+  "Something else",
+];
 
 export function ContactForm() {
   const [values, setValues] = useState<FormValues>(EMPTY);
@@ -60,8 +75,8 @@ export function ContactForm() {
         </h2>
         <p className="max-w-sm text-sm text-steel">
           Thanks for reaching out. This demo logs your inquiry to the console —
-          wiring it to email is a TODO. Our US-based team will follow up once
-          that&apos;s connected.
+          wiring it to email is a TODO. Our team will follow up once that&apos;s
+          connected.
         </p>
         <button
           type="button"
@@ -107,7 +122,7 @@ export function ContactForm() {
         />
       </div>
 
-      <div className="mt-6">
+      <div className="mt-6 grid gap-6 sm:grid-cols-2">
         <Field
           label="Email"
           required
@@ -123,6 +138,23 @@ export function ContactForm() {
             />
           }
         />
+        <Field
+          label="I'm interested in"
+          input={
+            <select
+              value={values.interest}
+              onChange={(e) => update("interest", e.target.value)}
+              className={`${inputClass()} appearance-none`}
+            >
+              <option value="">General inquiry</option>
+              {INTERESTS.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
+          }
+        />
       </div>
 
       <div className="mt-6">
@@ -136,7 +168,7 @@ export function ContactForm() {
               onChange={(e) => update("message", e.target.value)}
               rows={5}
               className={`${inputClass(errors.message)} resize-none`}
-              placeholder="Which machines are you evaluating, and what are you building?"
+              placeholder="What do you run, and what are you trying to make?"
             />
           }
         />

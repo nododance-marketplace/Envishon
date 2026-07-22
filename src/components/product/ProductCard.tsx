@@ -1,11 +1,14 @@
 import Link from "next/link";
 import type { Product } from "@/lib/types";
-import { formatPrice } from "@/data/products";
 import { ProductImage } from "@/components/ui/ProductImage";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { CategoryBadge } from "./CategoryBadge";
-import { ArrowRightIcon, FileTextIcon } from "@/components/ui/icons";
+import { ArrowRightIcon } from "@/components/ui/icons";
 
+/**
+ * Platform card — a machine Envishon trains and supports on, NOT a product for
+ * sale. No price, no buy/quote CTA; it routes to the platform's spec page.
+ */
 export function ProductCard({ product }: { product: Product }) {
   return (
     <SpotlightCard
@@ -15,7 +18,7 @@ export function ProductCard({ product }: { product: Product }) {
       <Link
         href={`/products/${product.slug}`}
         className="relative aspect-[4/3] w-full overflow-hidden"
-        aria-label={`View ${product.name}`}
+        aria-label={`View ${product.name} platform`}
       >
         <ProductImage
           src={product.images[0]}
@@ -24,7 +27,6 @@ export function ProductCard({ product }: { product: Product }) {
           label={product.name}
           className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.04]"
         />
-        {/* Top-corner model tag — a small technical cue */}
         <span className="absolute right-3 top-3 z-10 rounded-md border border-white/10 bg-base/70 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-titanium backdrop-blur">
           {product.slug.toUpperCase()}
         </span>
@@ -51,44 +53,17 @@ export function ProductCard({ product }: { product: Product }) {
         </p>
 
         <div className="mt-auto flex items-center justify-between pt-4">
-          {product.priceCents != null ? (
-            <span className="flex items-baseline gap-2">
-              <span className="font-mono text-sm text-titanium">
-                {product.inquiryOnly
-                  ? `From ${formatPrice(product.priceCents)}`
-                  : formatPrice(product.priceCents)}
-              </span>
-              {product.compareAtCents != null && (
-                <span className="font-mono text-xs text-steel/70 line-through">
-                  {formatPrice(product.compareAtCents)}
-                </span>
-              )}
-            </span>
-          ) : (
-            <span className="text-sm text-steel">Talk to sales</span>
-          )}
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-graphite">
+            We install · train · support
+          </span>
           <Link
             href={`/products/${product.slug}`}
             className="inline-flex items-center gap-1.5 text-sm text-accent-ember transition-colors hover:text-white"
           >
-            {product.priceCents != null && !product.inquiryOnly
-              ? "View details"
-              : "Learn more"}
+            View platform
             <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
         </div>
-
-        {product.quotePdf && (
-          <a
-            href={product.quotePdf}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 border-t border-white/[0.06] pt-3 text-xs font-medium text-accent transition-colors hover:text-accent-signal"
-          >
-            <FileTextIcon className="h-3.5 w-3.5" />
-            View quotation (PDF)
-          </a>
-        )}
       </div>
     </SpotlightCard>
   );

@@ -6,20 +6,20 @@ const PILLARS = [
   {
     icon: CompassIcon,
     index: "01",
-    title: "Hard-to-source hardware",
-    body: "Industrial SLM, SLS, and large-format FDM systems are notoriously difficult to find and import. We track down the machines most suppliers can't and bring them to your floor.",
-  },
-  {
-    icon: CubeIcon,
-    index: "02",
-    title: "Built for businesses",
-    body: "These aren't desktop hobby units. Every printer in our catalog is specified for production environments — tooling, end-use parts, and serious throughput.",
+    title: "Process, not hardware",
+    body: "The machine rarely fails. The knowledge to run it is what's missing — how to commission it, train an operator, handle the powder, weld cleanly, strip a surface without wrecking it. That's the part we do.",
   },
   {
     icon: ShieldIcon,
+    index: "02",
+    title: "Independent by design",
+    body: "We don't move boxes, so our advice isn't a sales pitch for one. We'll tell you which platform fits, when laser is the wrong tool, and what an honest engagement actually looks like.",
+  },
+  {
+    icon: CubeIcon,
     index: "03",
-    title: "US-based support",
-    body: "Sourcing, logistics, and follow-up are handled stateside. One point of contact from inquiry to install — no overseas runaround.",
+    title: "Built for the Americas",
+    body: "Envishon works across the Americas — the US, Canada, Mexico, Brazil, and beyond — bringing laser and additive capability to shops that would otherwise have to send the work out.",
   },
 ];
 
@@ -38,11 +38,11 @@ export function WhySection() {
               Why Envishon
             </p>
             <span className="hud-chip hidden sm:inline-flex">
-              SEC 02 · SOURCING
+              SEC 03 · CAPABILITY
             </span>
           </div>
           <h2 className="mt-5 max-w-2xl font-heading text-4xl font-medium tracking-tight text-white sm:text-5xl text-balance">
-            The printers others can&apos;t get you.
+            We sell the part that fails.
           </h2>
         </Reveal>
 

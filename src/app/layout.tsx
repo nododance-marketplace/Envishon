@@ -3,7 +3,6 @@ import { Chakra_Petch } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import { CartProvider } from "@/components/cart/CartContext";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { GrainOverlay } from "@/components/ui/GrainOverlay";
@@ -19,22 +18,24 @@ const chakraPetch = Chakra_Petch({
 export const metadata: Metadata = {
   metadataBase: new URL("https://envishonlabs3d.com"),
   title: {
-    default: "Envishon — Industrial 3D Printers",
+    default: "Envishon — Industrial Laser & Additive Services",
     template: "%s · Envishon",
   },
   description:
-    "Print the future. US-based sourcing for industrial SLM, SLS, and large-format FDM 3D printers — built for businesses.",
+    "Envishon is an industrial laser and additive-manufacturing services company for the Americas — metal 3D printer training, installation and support, laser welding, and laser cleaning. We don't sell you a box. We make sure it produces.",
   keywords: [
-    "industrial 3D printers",
-    "SLM",
-    "SLS",
-    "large-format FDM",
-    "metal 3D printing",
+    "metal 3D printer training",
+    "SLM installation",
+    "laser welding services",
+    "laser cleaning",
+    "laser rust removal",
+    "additive manufacturing services",
     "Envishon",
   ],
   openGraph: {
-    title: "Envishon — Industrial 3D Printers",
-    description: "Print the future.",
+    title: "Envishon — Industrial Laser & Additive Services",
+    description:
+      "Training, installation, technical support, laser welding, and laser cleaning across the Americas.",
     type: "website",
     url: "https://envishonlabs3d.com",
     siteName: "Envishon",
@@ -47,12 +48,14 @@ const orgSchema = {
   "@type": "Organization",
   name: "Envishon",
   url: "https://envishonlabs3d.com",
+  description:
+    "Industrial laser and additive-manufacturing services for the Americas: metal 3D printer training, installation and support, laser welding, and laser cleaning.",
   email: "envishonlabs3d@gmail.com",
   telephone: "+19804022520",
-  areaServed: "US",
+  areaServed: "Americas",
   contactPoint: {
     "@type": "ContactPoint",
-    contactType: "sales",
+    contactType: "customer service",
     email: "envishonlabs3d@gmail.com",
     telephone: "+19804022520",
   },
@@ -77,13 +80,11 @@ export default function RootLayout({
           Skip to content
         </a>
         <GrainOverlay />
-        <CartProvider>
-          <Header />
-          <main id="main" className="min-h-[60vh] pt-16">
-            {children}
-          </main>
-          <Footer />
-        </CartProvider>
+        <Header />
+        <main id="main" className="min-h-[60vh] pt-16">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

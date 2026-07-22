@@ -5,7 +5,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Talk to Envishon about sourcing an industrial SLM, SLS, or large-format FDM 3D printer for your business.",
+    "Request training, a service quote, or support from Envishon — metal AM, laser welding, and laser cleaning services across the Americas.",
 };
 
 export default function ContactPage() {
@@ -19,14 +19,14 @@ export default function ContactPage() {
               Contact
             </p>
             <h1 className="mt-5 font-heading text-4xl font-medium leading-[1.03] tracking-tight text-white sm:text-6xl text-balance">
-              Let&apos;s source your
+              Request training,
               <br />
-              next machine.
+              a quote, or support.
             </h1>
             <p className="mt-6 max-w-md text-base leading-relaxed text-steel">
-              Tell us what you&apos;re building and which systems you&apos;re
-              evaluating. Our US-based team handles sourcing, logistics, and
-              follow-up — start with a message.
+              Tell us what you run and what you&apos;re trying to make. We&apos;ll
+              scope the right engagement — metal-AM training and support, laser
+              welding, or laser cleaning — and be straight about what fits.
             </p>
 
             <dl className="mt-10 space-y-5 text-sm">
@@ -73,9 +73,9 @@ export default function ContactPage() {
               </div>
               <div>
                 <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-steel">
-                  Based in
+                  Serving
                 </dt>
-                <dd className="mt-1 text-titanium">United States</dd>
+                <dd className="mt-1 text-titanium">The Americas</dd>
               </div>
               <div>
                 <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-steel">

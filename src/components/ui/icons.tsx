@@ -124,3 +124,24 @@ export function FileTextIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+// Laser welding — a focused beam meeting a joint.
+export function BeamIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 2v7" />
+      <path d="M9.5 9h5l1.5 4a4 4 0 0 1-8 0l1.5-4Z" />
+      <path d="M4 21h16M8 21l1-3M16 21l-1-3" />
+    </svg>
+  );
+}
+
+// Laser cleaning — surface with contamination lifting away.
+export function SparkIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5 19 19M19 5l-2.5 2.5M7.5 16.5 5 19" />
+      <circle cx="12" cy="12" r="2.5" />
+    </svg>
+  );
+}
