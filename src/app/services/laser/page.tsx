@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRightIcon, CheckIcon, BeamIcon, SparkIcon } from "@/components/ui/icons";
+import { ProofVideo } from "@/components/ui/ProofVideo";
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -189,21 +190,36 @@ export default function LaserServicePage() {
         </div>
       </section>
 
-      {/* ── ONE MACHINE, TWO JOBS ──────────────────────────────────────── */}
-      <section className="border-b border-base-700/70 py-16 sm:py-20">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
-            One machine, two jobs
-          </span>
-          <p className="mt-5 text-lg leading-relaxed text-steel text-pretty">
-            Because welding and cleaning run on the same handheld platform,
-            there&apos;s one tool to buy, one thing to learn, and one process
-            that flows end to end — strip a rusty surface, weld it, then clean
-            the weld. Envishon brings that capability to your shop, as training,
-            on-site service, or both.
-            {/* TODO: owner to confirm the offer model — training, on-site
-                service, or both, and pricing. Copy works either way for now. */}
-          </p>
+      {/* ── ONE MACHINE, TWO JOBS + FIELD FOOTAGE ──────────────────────── */}
+      <section className="border-b border-base-700/70 py-16 sm:py-24">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <div>
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
+              One machine, two jobs
+            </span>
+            <h2 className="mt-4 font-heading text-3xl leading-tight tracking-tight text-white sm:text-4xl text-balance">
+              Strip the rust. Weld the seam. Same gun.
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-steel text-pretty">
+              Because welding and cleaning run on the same handheld platform,
+              there&apos;s one tool to buy, one thing to learn, and one process
+              that flows end to end — strip a rusty surface, weld it, then clean
+              the weld. Envishon brings that capability to your shop, as
+              training, on-site service, or both.
+              {/* TODO: owner to confirm the offer model — training, on-site
+                  service, or both, and pricing. Copy works either way for now. */}
+            </p>
+          </div>
+
+          {/* Vertical field clip — laser rust removal on a brake rotor */}
+          <div className="mx-auto w-full max-w-[320px] lg:max-w-none">
+            <ProofVideo
+              src="/video/handling-laser.mp4"
+              poster="/video/handling-laser-poster.jpg"
+              label="Laser rust removal"
+              aspect="aspect-[9/16]"
+            />
+          </div>
         </div>
       </section>
 

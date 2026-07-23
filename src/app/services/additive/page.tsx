@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRightIcon, CheckIcon, ShieldIcon } from "@/components/ui/icons";
+import { ProofVideo } from "@/components/ui/ProofVideo";
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
@@ -128,6 +129,28 @@ export default function AdditiveServicePage() {
         </div>
       </section>
 
+      {/* ── FIELD FOOTAGE ──────────────────────────────────────────────── */}
+      <section className="border-b border-base-700/70 py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="max-w-2xl">
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
+              On the floor
+            </span>
+            <h2 className="mt-4 font-heading text-2xl leading-tight tracking-tight text-white sm:text-3xl text-balance">
+              The machines we install, train on, and support.
+            </h2>
+          </div>
+          <div className="mt-8">
+            <ProofVideo
+              src="/video/handling-printer.mp4"
+              poster="/video/handling-printer-poster.jpg"
+              label="SLM / LPBF"
+              aspect="aspect-video"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* ── WHAT AN ENGAGEMENT INCLUDES ────────────────────────────────── */}
       <section className="border-b border-base-700/70 py-20 sm:py-28">
         <div className="mx-auto max-w-6xl px-6">
@@ -201,7 +224,7 @@ export default function AdditiveServicePage() {
                   href="/vizus"
                   className="text-accent hover:text-accent-signal"
                 >
-                  meet Vizus AI
+                  meet Text-to-CAD
                 </Link>
                 .
               </p>
