@@ -8,6 +8,9 @@ const nextConfig = {
       { source: "/shop", destination: "/platforms", permanent: true },
       // The old singular /service page became the additive services pillar.
       { source: "/service", destination: "/services/additive", permanent: true },
+      // Laser welding + cleaning merged into one page (one machine does both).
+      { source: "/services/laser-welding", destination: "/services/laser", permanent: true },
+      { source: "/services/laser-cleaning", destination: "/services/laser", permanent: true },
     ];
   },
 };

@@ -1,5 +1,4 @@
 import { Hero } from "@/components/home/Hero";
-import { FilmBand } from "@/components/home/FilmBand";
 import { WhySection } from "@/components/home/WhySection";
 import { CtaBand } from "@/components/home/CtaBand";
 import { PillarGrid } from "@/components/services/PillarGrid";
@@ -9,7 +8,6 @@ import { ProgressRail } from "@/components/ui/ProgressRail";
 const RAIL = [
   { id: "overview", label: "Overview" },
   { id: "services", label: "Services" },
-  { id: "film", label: "The work" },
   { id: "why", label: "Why Envishon" },
   { id: "contact-cta", label: "Contact" },
 ];
@@ -37,7 +35,7 @@ export default function HomePage() {
               </span>
             </div>
             <h2 className="mt-5 max-w-2xl font-heading text-4xl font-medium tracking-tight text-white sm:text-5xl text-balance">
-              Three ways we make it produce.
+              Two ways we make it produce.
             </h2>
             <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-steel text-pretty">
               Envishon is an industrial laser and additive services company.
@@ -51,9 +49,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div id="film">
-        <FilmBand />
-      </div>
       <div id="why">
         <WhySection />
       </div>

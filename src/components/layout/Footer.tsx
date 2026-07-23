@@ -67,18 +67,10 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/services/laser-welding"
+                  href="/services/laser"
                   className="text-titanium hover:text-accent-ember"
                 >
-                  Laser welding
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/laser-cleaning"
-                  className="text-titanium hover:text-accent-ember"
-                >
-                  Laser cleaning
+                  Laser welding &amp; cleaning
                 </Link>
               </li>
               <li>

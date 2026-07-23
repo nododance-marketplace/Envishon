@@ -11,7 +11,7 @@ import { ArrowRightIcon } from "@/components/ui/icons";
 export function PillarGrid() {
   return (
     <div>
-      <div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2">
         {PILLARS.map((p, i) => {
           const Icon = p.icon;
           return (

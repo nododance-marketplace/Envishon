@@ -1,5 +1,5 @@
 import type { ComponentType, SVGProps } from "react";
-import { LayersIcon, BeamIcon, SparkIcon } from "@/components/ui/icons";
+import { LayersIcon, BeamIcon } from "@/components/ui/icons";
 
 /**
  * The three service pillars — the whole company. Summary content shared by the
@@ -29,22 +29,13 @@ export const PILLARS: PillarSummary[] = [
     icon: LayersIcon,
   },
   {
-    href: "/services/laser-welding",
+    href: "/services/laser",
     n: "02",
-    eyebrow: "Laser Welding",
-    title: "Handheld fiber laser welding",
+    eyebrow: "Laser Welding & Cleaning",
+    title: "One handheld laser, two jobs",
     blurb:
-      "Several times faster than TIG with a fraction of the heat input — less distortion, cleaner welds, across steel, stainless, and aluminum. Services and training.",
+      "A single fiber-laser system welds steel, stainless, and aluminum with far less heat than TIG — and strips rust, coatings, and contamination by ablation. No media, no chemicals. Services and training.",
     icon: BeamIcon,
-  },
-  {
-    href: "/services/laser-cleaning",
-    n: "03",
-    eyebrow: "Laser Cleaning & Rust Removal",
-    title: "Ablation cleaning & surface prep",
-    blurb:
-      "Strip rust, coatings, and contamination without touching the base metal — no media, no chemicals, no grinding. Services and training.",
-    icon: SparkIcon,
   },
 ];
 
