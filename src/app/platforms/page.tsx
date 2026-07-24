@@ -9,7 +9,7 @@ import { ArrowRightIcon } from "@/components/ui/icons";
 export const metadata: Metadata = {
   title: "Platforms we service",
   description:
-    "The equipment Envishon trains and supports on — the FastForm SLM/LPBF metal printer line and the xTool MetalFab laser welder, cutter, and cleaner.",
+    "The equipment Envishon trains and supports on — the FastForm SLM/LPBF metal printer line, the xTool MetalFab laser welder, cutter, and cleaner, and the EN-Atomizer precious-metal powder system.",
 };
 
 export default function PlatformsPage() {
@@ -24,9 +24,10 @@ export default function PlatformsPage() {
           The equipment behind the work.
         </h1>
         <p className="mt-5 text-base leading-relaxed text-steel text-pretty">
-          The metal printers and laser systems Envishon installs, trains
-          operators on, and supports. Bring your own machine, or ask us which
-          platform fits your work.
+          The metal printers, laser systems, and powder production Envishon
+          installs, trains operators on, and supports — because printing starts
+          with the material. Bring your own machine, or ask us which platform
+          fits your work.
         </p>
       </header>
 
