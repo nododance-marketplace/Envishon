@@ -41,12 +41,12 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://envishonlabs3d.com"
+                  href="https://envishon3d.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-titanium transition-colors hover:text-accent-ember"
                 >
-                  envishonlabs3d.com
+                  envishon3d.com
                 </a>
               </li>
             </ul>

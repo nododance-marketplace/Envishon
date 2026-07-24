@@ -154,6 +154,33 @@ export default function PlatformDetailPage({ params }: PageProps) {
           </div>
         </div>
       </div>
+
+      {/* Real-work gallery — only rendered for platforms that supply photos. */}
+      {p.gallery?.length ? (
+        <div id="gallery" className="mt-16 scroll-mt-24">
+          <h2 className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent-ember">
+            From the machine
+          </h2>
+          <div className="mt-5 grid gap-5 sm:grid-cols-2">
+            {p.gallery.map((shot) => (
+              <figure key={shot.src}>
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/[0.08] bg-base-900 shadow-depth">
+                  <Image
+                    src={shot.src}
+                    alt={shot.caption}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="mt-3 text-sm leading-relaxed text-steel">
+                  {shot.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

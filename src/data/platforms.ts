@@ -12,6 +12,7 @@
  * ─────────────────────────────────────────────────────────────────────────
  */
 export type PlatformSpec = { label: string; value: string };
+export type PlatformImage = { src: string; caption: string };
 
 export type Platform = {
   slug: string;
@@ -26,6 +27,8 @@ export type Platform = {
   specNote: string;
   serviceHref: string;
   serviceLabel: string;
+  /** Optional real-work photo gallery, rendered below the spec table. */
+  gallery?: PlatformImage[];
 };
 
 export const platforms: Platform[] = [
@@ -159,6 +162,16 @@ export const platforms: Platform[] = [
       "Envishon EN-A model range; figures are representative across the line — exact power draw, footprint, and weight per model are confirmed on quote. Requires 380 V three-phase; water chiller sold separately.",
     serviceHref: "/services/additive",
     serviceLabel: "Metal AM training & support",
+    gallery: [
+      {
+        src: "/products/atomizer-powder-wet.jpg",
+        caption: "Freshly atomized powder, straight from the water bath.",
+      },
+      {
+        src: "/products/atomizer-powder-dry.jpg",
+        caption: "Dried and sized feedstock — the grit you dial in.",
+      },
+    ],
   },
 ];
 
