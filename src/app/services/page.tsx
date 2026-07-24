@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PillarGrid } from "@/components/services/PillarGrid";
-import { Reveal } from "@/components/ui/Reveal";
+import { ProofVideo } from "@/components/ui/ProofVideo";
 import { ArrowRightIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
@@ -29,10 +29,56 @@ export default function ServicesHubPage() {
             <span className="text-spark">not machines.</span>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-steel text-pretty">
-            Three ways Envishon puts industrial laser and additive capability on
-            your floor — training, installation, technical support, laser
-            welding, and laser cleaning — across the Americas.
+            Envishon puts industrial laser and additive capability on your floor
+            — training, installation, technical support, laser welding, and
+            laser cleaning — across the Americas.
           </p>
+        </div>
+      </section>
+
+      {/* ── FIELD FOOTAGE ──────────────────────────────────────────────── */}
+      <section className="border-b border-base-700/70 py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="max-w-2xl">
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-accent">
+              In the field
+            </span>
+            <h2 className="mt-4 font-heading text-3xl leading-tight tracking-tight text-white sm:text-4xl text-balance">
+              Real work, not a brochure.
+            </h2>
+            <p className="mt-5 leading-relaxed text-steel">
+              The two things we do, on actual metal — laser welding and cleaning,
+              and the metal-AM print floor we install, train on, and support.
+            </p>
+          </div>
+
+          <div className="mt-10 grid items-start gap-6 lg:grid-cols-[1.5fr_1fr]">
+            <figure>
+              <ProofVideo
+                src="/video/handling-printer.mp4"
+                poster="/video/handling-printer-poster.jpg"
+                label="SLM / LPBF"
+                aspect="aspect-video"
+              />
+              <figcaption className="mt-3 text-sm leading-relaxed text-steel">
+                On the metal-AM print floor — the machines we install, train on,
+                and support.
+              </figcaption>
+            </figure>
+
+            <figure className="mx-auto w-full max-w-[300px] lg:max-w-none">
+              <ProofVideo
+                src="/video/handling-laser.mp4"
+                poster="/video/handling-laser-poster.jpg"
+                label="Laser rust removal"
+                aspect="aspect-[9/16]"
+              />
+              <figcaption className="mt-3 text-sm leading-relaxed text-steel">
+                Handheld laser rust removal — stripping a surface with no media
+                and no chemicals.
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
